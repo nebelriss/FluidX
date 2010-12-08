@@ -17,7 +17,8 @@ class Import_ui(object):
 
     def __init__(self, root):
         '''
-        Creates a import window, where the user can choose the location of the csv file and in witch database he wants to write it
+        Constructor for a import window where the user can open his csv file and import it to a new or
+        an existing database.
         '''
 
         # init
@@ -25,6 +26,7 @@ class Import_ui(object):
         self.filepath = StringVar()
         self.databasename = StringVar()
 
+        # main Frame
         self.frame = Frame(root)
         # grid frame
         self.frame.grid(row = 1, column = 0) 
@@ -37,7 +39,7 @@ class Import_ui(object):
         #Entry
         self.entryPath = Entry(self.frame, width = 40, textvariable = self.filepath)
         self.entryPath.insert(END, "~/file.csv")
-        #Radiobutton
+        # Radiobuttons, new Database or existing database
         self.newDB = Radiobutton(self.frame, text = "Create new Database", variable = self.value, value = 0)
         self.existDB = Radiobutton(self.frame, text = "Use existing Database", variable = self.value, value = 1)
         # Buttons to start import and quit the import window
@@ -58,7 +60,8 @@ class Import_ui(object):
         
     def csvopenfilename(self):
         '''
-        Opens a file dialog to choose a csv file and then the path and filename is send to the filepath variable to update entryPath, so the path will be showed in the entry.
+        Opens a file dialog to choose a csv-file and then the path and filename is send to the filepath variable
+        to update entryPath, so the path will be showed in the entry.
         '''
         self.file_opt = options = {}
         options['filetypes'] = [('csv files', '.csv')]
@@ -69,6 +72,10 @@ class Import_ui(object):
         self.filepath.set(filepath)
         
     def sqlnewfilename(self):
+        '''
+        Opens a dialog where the user can chose the location of his file to save it. But the file will not be saved directly it 
+        only writes the path to self.databasename
+        '''
         self.file_save = options = {}
         options['filetypes'] = [('tes files', '.tes')]
         options['initialdir'] = 'C:\\'
@@ -78,6 +85,9 @@ class Import_ui(object):
         self.databasename.set(databasename)
         
     def sqlopenfilename(self):
+        '''
+        opens a dialoge where the user can chose the location of an existing database, the path is saved then in databasename.
+        '''
         self.file_open = options = {}
         options['filetypes'] = [('tes files', '.tes')]
         options['initialdir'] = 'C:\\'
@@ -99,15 +109,15 @@ class Import_ui(object):
         
         
         # check if databasename is empty
-        if self.databasename.get() == " ":
-            print
+        if self.databasename.get() == "":
+            print self.databasename.get()
         #if not send values to Csvimport class
         else:
             showinfo("Reading Database", "Reading Database")
             check = Csvimport(self.filepath, self.databasename, self.value)
 
         
-        if check.exit() == True:
+        if check.exit() == False:
             quit()
         else:
             showwarning("Import Error", "Import the Database\n wasn't successful!")
