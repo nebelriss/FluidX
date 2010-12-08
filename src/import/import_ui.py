@@ -25,11 +25,12 @@ class Import_ui(object):
         self.value = IntVar()
         self.filepath = StringVar()
         self.databasename = StringVar()
-
+        
+        
         # main Frame
         self.frame = Frame(root)
         # grid frame
-        self.frame.grid(row = 1, column = 0) 
+        self.frame.grid() 
         # Title showed inside the window  
         self.csvLabel = Label(self.frame, text = "CSV - Import")
         myfont = Font(family = 'Arial', size = 14, weight = BOLD)
@@ -37,7 +38,7 @@ class Import_ui(object):
         self.dirLabel = Label(self.frame, text = "Folder: ")
         self.emptylabel = Label(self.frame, height = 1)
         #Entry
-        self.entryPath = Entry(self.frame, width = 40, textvariable = self.filepath)
+        self.entryPath = Entry(self.frame, width = 40, textvariable = self.filepath, bg = "grey")
         self.entryPath.insert(END, "~/file.csv")
         # Radiobuttons, new Database or existing database
         self.newDB = Radiobutton(self.frame, text = "Create new Database", variable = self.value, value = 0)
@@ -49,12 +50,12 @@ class Import_ui(object):
         
         # grit for widget, position etc.
         self.csvLabel.grid(row = 0, column = 0, columnspan = 2, sticky = (N, W), pady = 10, padx = 5)
-        self.dirLabel.grid(row = 1, column = 0)
+        self.dirLabel.grid(row = 1, column = 0, padx = 5)
         self.emptylabel.grid(row = 2, column = 0)
         self.entryPath.grid(row = 1, column = 1, columnspan = 1, sticky = (N, W), padx = 5, pady = 2.5)
         self.buttonBrowse.grid(row = 1, column = 2, sticky = W, padx = 5)
-        self.newDB.grid(row = 3, column = 0, sticky = W, columnspan = 2)
-        self.existDB.grid(row = 4, column = 0, sticky = W, columnspan = 2)
+        self.newDB.grid(row = 3, column = 1, sticky = W, columnspan = 2)
+        self.existDB.grid(row = 4, column = 1, sticky = W, columnspan = 2)
         self.buttonOK.grid(row = 6, column = 2, sticky = (S, E), padx = 5, pady = 5)
         self.buttonCancel.grid(row = 6, column = 1, sticky = (S, E), pady = 5)
         
@@ -80,7 +81,7 @@ class Import_ui(object):
         options['filetypes'] = [('tes files', '.tes')]
         options['initialdir'] = 'C:\\'
         options['parent'] = root
-        options['title'] = 'save your Database file'
+        options['title'] = 'Save your Database file'
         databasename = asksaveasfilename(**self.file_save)
         self.databasename.set(databasename)
         
@@ -92,7 +93,7 @@ class Import_ui(object):
         options['filetypes'] = [('tes files', '.tes')]
         options['initialdir'] = 'C:\\'
         options['parent'] = root
-        options['title'] = 'choose your existing database file'
+        options['title'] = 'Choose your existing database file'
         databasename = askopenfilename(**self.file_open)
         self.databasename.set(databasename)
         
