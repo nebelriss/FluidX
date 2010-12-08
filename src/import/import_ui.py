@@ -117,9 +117,10 @@ class Import_ui(object):
             showinfo("Reading Database", "Reading Database")
             check = Csvimport(self.filepath, self.databasename, self.value)
 
-        
+        # if Csvimport return True it mean that the import of the csv file to the sql was successful
         if check.exit() == False:
             quit()
+        #if the import was iterrupted an error message will be showed
         else:
             showwarning("Import Error", "Import the Database\n wasn't successful!")
             
