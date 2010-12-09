@@ -12,7 +12,7 @@ from tkMessageBox import *
 class Import_ui(object):
     '''
     This Class is for importing CSV files with a specific format that is given out to the creators.
-    First the file will be read with csvreader and stored in a sqlite database. 
+    First the file will be read with csvreader and stored in a sqlite3 database. 
     '''
 
     def __init__(self, root):
@@ -111,13 +111,22 @@ class Import_ui(object):
         
         # check if databasename is empty
         if self.databasename.get() == "":
-            print self.databasename.get()
+            pass
         #if not send values to Csvimport class
         else:
             showinfo("Reading Database", "Reading Database")
-            check = Csvimport(self.filepath, self.databasename, self.value)
+            
+            #  converting values to string
+            filepath = self.filepath.get()
+            databasename = self.databasename.get()
+            value = self.value.get()
+            
+            # sending string values to read csv and write to sql
+            check = Csvimport(filepath, databasename, value)
+            check.cvsread()
+            check.tosql()
 
-        # if Csvimport return True it mean that the import of the csv file to the sql was successful
+        #if Csvimport return True it mean that the import of the csv file to the sql was successful
         if check.exit() == False:
             quit()
         #if the import was iterrupted an error message will be showed
