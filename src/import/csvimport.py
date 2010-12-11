@@ -24,7 +24,7 @@ class Csvimport(object):
         self.filepath = filepath # path to the csv file
         self.dbpath = dbpath # path to the db file
         self.value = value # is 0 or 1
-        self.vn = 10 # number of values given by groups
+        self.vn = 9 # number of values given by groups
         
     def cvsread(self):
         '''
@@ -63,8 +63,9 @@ class Csvimport(object):
             if id.isdigit() and len(id) == 4:
                 
                 # store values in db
-                print row[2:]
-                db.store_values(int(id), row[2:])
+                row_tmp = row[2:]
+                print len(row_tmp)
+                db.store_values(int(id), row_tmp)
                 
                 
             
