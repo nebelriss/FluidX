@@ -122,12 +122,12 @@ class Import_ui(object):
             value = self.value.get()
             
             # sending string values to read csv and write to sql
-            check = Csvimport(filepath, databasename, value)
+            check = Csvimport(filepath, databasename)
             check.cvsread()
             check.tosql()
 
         #if Csvimport return True it mean that the import of the csv file to the sql was successful
-        if check.exit() == False:
+        if check == True:
             quit()
         #if the import was iterrupted an error message will be showed
         else:
