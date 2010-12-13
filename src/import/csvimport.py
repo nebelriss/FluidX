@@ -16,15 +16,14 @@ class Csvimport(object):
     '''
 
 
-    def __init__(self, filepath, dbpath, value):
+    def __init__(self, filepath, dbpath):
         '''
         Constructor
         '''
         # init of the given values
         self.filepath = filepath # path to the csv file
         self.dbpath = dbpath # path to the db file
-        self.value = value # is 0 or 1
-        self.vn = 9 # number of values given by groups
+        self.vn = 11 # number of values given by groups
         
     def cvsread(self):
         '''
@@ -37,8 +36,15 @@ class Csvimport(object):
         dialect = csv.Sniffer().sniff(csvfile.read(1024))
         csvfile.seek(0)
         
+                   
         # wirte the csv file into reader
         self.reader = csv.reader(csvfile, dialect)
+
+            
+
+
+
+             
         
     def tosql(self):
         '''
@@ -52,20 +58,44 @@ class Csvimport(object):
         '''
         # open database connection with the parameters database path and number of v values
         db = Experiment(str(self.dbpath), self.vn)
+        meta = {}
         
+        # store values
         # read values of each row and store it in the database
         for row in self.reader:
-            
             # read the id number in the first column of each row
             id = str(row[0])
             
             # test if the first value in each row is a digit and if its a valid id
-            if id.isdigit() and len(id) == 4:
+            if id.isdigit and len(id) == 1:
+                meta.update({'exp_name':row[1], 'actor_name': unicode(str(row[2])), 'additional_info': row[3]})
                 
+            elif row[0] == 'ID':
+                n = 1  
+                             
+                for i in range(2,len(row)):
+                    metaunit = 'v' + str(n) + '_unit'
+                    metadesc = 'v' + str(n) + '_desc'
+                    word = row[i]
+                    a = word.find('[')
+                    b = word.find(']')
+                    meta.update({metaunit: unicode(word[a + 1:b]), metadesc: unicode(word[:a])})
+                    n = n + 1
+        
+            
+            elif id.isdigit() and len(id) == 4:
+                meta.update({'date': row[1]})                
                 # store values in db
                 row_tmp = row[2:]
-                print len(row_tmp)
-                db.store_values(int(id), row_tmp)
+                print meta
+                print row_tmp
+                db.store_metadata(meta)
+                db.store_values(int(id), [row_tmp])
+                
+            else: print "shit"
+            
+        return True
+                
                 
                 
             
