@@ -4,44 +4,113 @@
 
 from Tkinter import *
 from import_ui import *
+from data_access import *
+from plot import *
+from table import *
 
 
 class Main():
+    
     def __init__(self, root):
         '''
     
         '''
+        self.screenSize()
+        
+        # init db name
+        self.databasename = StringVar()
+
+        
         # Frames
-        top_frame = Frame(root, height = 65, bg = 'white')
+        top_frame = Frame(root, height = 65)
         main_frame = Frame(root)
-        plot_frame = Frame(main_frame, bg = 'blue')
+        self.plot_frame = Frame(main_frame, relief =  SUNKEN)
         right_frame = Frame(main_frame, width = 250, bg = 'red')
         # Frames pack
         top_frame.pack(side = TOP, fill = BOTH, expand = NO)
         main_frame.pack(fill = BOTH, expand = YES)
-        plot_frame.pack(side = LEFT, fill = BOTH, expand = YES)
+        self.plot_frame.pack(side = LEFT, fill = BOTH, expand = YES)
         right_frame.pack(side = RIGHT, fill = BOTH, expand = NO)
     
     
         # Buttons are temporary until they get pics inside etc
         # Buttons in the top_frame
-        button_open = Button(top_frame, text = 'Open', height = 3, width = 7)
+        button_open = Button(top_frame, text = 'Open', height = 3, width = 7, command = self.fileOpen)
         button_import = Button(top_frame, text = 'Import', height = 3, width = 7, command = self.importer)
-        button_table = Button(top_frame, text = 'Table', height = 3, width = 7)
+        button_table = Button(top_frame, text = 'Table', height = 3, width = 7, command = self.table)
         button_exit = Button(top_frame, text = 'Exit', height = 3, width = 7, command = quit)
         # Button packers
         button_open.pack(side = LEFT, anchor = W) 
         button_import.pack(side = LEFT, padx = 5 ) 
         button_table.pack(side = LEFT)
         button_exit.pack(side = RIGHT)
+        
+        self.plot()
+        
+    def screenSize(self):
+        '''
+        asking for screen witdh and height
+        '''
+        self.sw = root.winfo_screenwidth()
+        self.sh = root.winfo_screenheight()
+        self.sw -= 200
+        self.sh -= 150
+        root.geometry("%dx%d+0+0" % (self.sw , self.sh))
+        
+    def plot(self):
+        '''
+        
+        ''' 
+        p = Plot(root, self.plot_frame, self.sw, self.sh)
+        
+    def checkBox(self):
+        '''
+        
+        '''
+          
+    def table(self):
+        '''
+        
+        '''
+        tab = Table(root)
+        
+    def data(self, databasepath):
+        '''
+        opening the database and get infos out of the sql
+        '''
+        db = Experiment(databasepath)
+        values = db.load_values()
+        meta = db.load_metadata()
+        for row in values:
+            print row
+        print meta
        
     
     def importer(self):
-        i = Import_ui(root)
+        '''
+        opens the importer window
+        '''
+        self.i = Import_ui(root)
+
+        
+    def fileOpen(self):
+        '''
+        
+        '''
+        self.file_open = options = {}
+        options['filetypes'] = [('database file', '.tes')]
+        options['initialdir'] = 'C:\\'
+        options['parent'] = root
+        options['title'] = 'Choose your existing database file'
+        databasename = askopenfilename(**self.file_open)
+        self.databasename.set(databasename)
+        databasepath = self.databasename.get()
+        self.data(databasepath)
+        
+        
 
 root = Tk()
-sw = root.winfo_screenwidth()
-sh = root.winfo_screenheight()
-root.geometry("%dx%d+0+0" % (sw, sh))
+root.title("FluidX - 0.1")
+
 main = Main(root)
 root.mainloop()

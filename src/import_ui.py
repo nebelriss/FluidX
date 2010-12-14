@@ -20,6 +20,8 @@ class Import_ui(object):
         Constructor for a import window where the user can open his csv file and import it to a new or
         an existing database.
         '''
+        
+        # child window parameters
         self.child = Toplevel(root)
         self.child.title("Import - FluidX")
         self.child.resizable(width=FALSE, height=FALSE)
@@ -135,8 +137,5 @@ class Import_ui(object):
         #if the import was iterrupted an error message will be showed
         else:
             showwarning("Import Error", "Import the Database\n wasn't successful!")
-            
 
-        
-        
-
+                
