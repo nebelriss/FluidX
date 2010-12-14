@@ -39,12 +39,7 @@ class Csvimport(object):
                    
         # wirte the csv file into reader
         self.reader = csv.reader(csvfile, dialect)
-
-            
-
-
-
-             
+   
         
     def tosql(self):
         '''
@@ -87,12 +82,10 @@ class Csvimport(object):
                 meta.update({'date': row[1]})                
                 # store values in db
                 row_tmp = row[2:]
-                print meta
-                print row_tmp
                 db.store_metadata(meta)
                 db.store_values(int(id), [row_tmp])
                 
-            else: print "shit"
+            else: pass
             
         return True
                 
