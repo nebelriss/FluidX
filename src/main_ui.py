@@ -7,6 +7,7 @@ from import_ui import *
 from data_access import *
 from plot import *
 from table import *
+from rightpanel import *
 
 
 class Main():
@@ -25,12 +26,16 @@ class Main():
         top_frame = Frame(root, height = 65)
         main_frame = Frame(root)
         self.plot_frame = Frame(main_frame, relief =  SUNKEN)
-        right_frame = Frame(main_frame, width = 250, bg = 'red')
+        self.right_frame = Frame(main_frame, width = 250, bg = 'red')
         # Frames pack
         top_frame.pack(side = TOP, fill = BOTH, expand = NO)
         main_frame.pack(fill = BOTH, expand = YES)
         self.plot_frame.pack(side = LEFT, fill = BOTH, expand = YES)
-        right_frame.pack(side = RIGHT, fill = BOTH, expand = NO)
+        self.right_frame.pack(side = RIGHT, fill = BOTH, expand = NO)
+        
+        # Scrollbar
+        scrollbar = Scrollbar(self.right_frame)
+        scrollbar.pack(side=RIGHT, fill=Y)
     
     
         # Buttons are temporary until they get pics inside etc
@@ -45,6 +50,8 @@ class Main():
         button_table.pack(side = LEFT)
         button_exit.pack(side = RIGHT)
         
+        
+        self.checkBox()
         self.plot()
         
     def screenSize(self):
@@ -61,12 +68,14 @@ class Main():
         '''
         
         ''' 
-        p = Plot(root, self.plot_frame, self.sw, self.sh)
+        Plot(root, self.plot_frame, self.sw, self.sh)
         
     def checkBox(self):
         '''
         
         '''
+        Rightpanel(self.right_frame)
+        
           
     def table(self):
         '''
@@ -81,9 +90,6 @@ class Main():
         db = Experiment(databasepath)
         values = db.load_values()
         meta = db.load_metadata()
-        for row in values:
-            print row
-        print meta
        
     
     def importer(self):
