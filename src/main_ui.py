@@ -3,7 +3,7 @@
 
 
 from Tkinter import *
-from import_ui import Import_ui
+from import_ui import *
 
 
 class Main():
@@ -28,16 +28,16 @@ class Main():
         button_open = Button(top_frame, text = 'Open', height = 3, width = 7)
         button_import = Button(top_frame, text = 'Import', height = 3, width = 7, command = self.importer)
         button_table = Button(top_frame, text = 'Table', height = 3, width = 7)
-        button_exit = Button(top_frame, text = 'Exit', height = 3, width = 7)
+        button_exit = Button(top_frame, text = 'Exit', height = 3, width = 7, command = quit)
         # Button packers
-        button_open.pack(side = LEFT) 
-        button_import.pack(side = LEFT) 
+        button_open.pack(side = LEFT, anchor = W) 
+        button_import.pack(side = LEFT, padx = 5 ) 
         button_table.pack(side = LEFT)
         button_exit.pack(side = RIGHT)
        
     
     def importer(self):
-        print "shit"
+        i = Import_ui(root)
 
 root = Tk()
 sw = root.winfo_screenwidth()

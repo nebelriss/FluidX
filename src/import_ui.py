@@ -20,7 +20,10 @@ class Import_ui(object):
         Constructor for a import window where the user can open his csv file and import it to a new or
         an existing database.
         '''
-
+        self.child = Toplevel(root)
+        self.child.title("Import - FluidX")
+        self.child.resizable(width=FALSE, height=FALSE)
+        
         # init
         self.value = IntVar()
         self.filepath = StringVar()
@@ -28,7 +31,7 @@ class Import_ui(object):
         
         
         # main Frame
-        self.frame = Frame(root)
+        self.frame = Frame(self.child)
         # grid frame
         self.frame.grid() 
         # Title showed inside the window  
@@ -46,7 +49,7 @@ class Import_ui(object):
         # Buttons to start import and quit the import window
         self.buttonBrowse = Button(self.frame, text = "Browse", command = self.csvopenfilename)
         self.buttonOK = Button(self.frame, text = "OK", width = 5, command = self.cvstosql)
-        self.buttonCancel = Button(self.frame, text = "Cancel", command = quit)
+        self.buttonCancel = Button(self.frame, text = "Cancel", command = self.child.destroy)
         
         # grit for widget, position etc.
         self.csvLabel.grid(row = 0, column = 0, columnspan = 2, sticky = (N, W), pady = 10, padx = 5)
@@ -67,7 +70,7 @@ class Import_ui(object):
         self.file_opt = options = {}
         options['filetypes'] = [('csv files', '.csv')]
         options['initialdir'] = 'C:\\'
-        options['parent'] = root
+        options['parent'] = self.child
         options['title'] = 'choose csv file'
         filepath = askopenfilename(**self.file_opt)
         self.filepath.set(filepath)
@@ -80,7 +83,7 @@ class Import_ui(object):
         self.file_save = options = {}
         options['filetypes'] = [('tes files', '.tes')]
         options['initialdir'] = 'C:\\'
-        options['parent'] = root
+        options['parent'] = self.child
         options['title'] = 'Save your Database file'
         databasename = asksaveasfilename(**self.file_save)
         self.databasename.set(databasename)
@@ -92,7 +95,7 @@ class Import_ui(object):
         self.file_open = options = {}
         options['filetypes'] = [('tes files', '.tes')]
         options['initialdir'] = 'C:\\'
-        options['parent'] = root
+        options['parent'] = self.child
         options['title'] = 'Choose your existing database file'
         databasename = askopenfilename(**self.file_open)
         self.databasename.set(databasename)
@@ -128,7 +131,7 @@ class Import_ui(object):
 
         #if Csvimport return True it mean that the import of the csv file to the sql was successful
         if ok == True:
-            quit()
+            self.child.destroy()
         #if the import was iterrupted an error message will be showed
         else:
             showwarning("Import Error", "Import the Database\n wasn't successful!")
@@ -137,11 +140,3 @@ class Import_ui(object):
         
         
 
-root = Tk()
-win2 = Toplevel(root)
-importer = Import_ui(win2)
-root.title("Import - FluidX") # window title
-
-# max and min size for the window, so the window has a fix size
-root.resizable(width=FALSE, height=FALSE)
-root.mainloop()
