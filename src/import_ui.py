@@ -138,7 +138,8 @@ class Import_ui(object):
         
 
 root = Tk()
-importer = Import_ui(root)
+win2 = Toplevel(root)
+importer = Import_ui(win2)
 root.title("Import - FluidX") # window title
 
 # max and min size for the window, so the window has a fix size
