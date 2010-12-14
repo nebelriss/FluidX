@@ -1,5 +1,6 @@
-#Thu Dec 09 11:45:02 CET 2010
+#Tue Dec 14 12:53:51 CET 2010
 eclipse.preferences.version=1
-encoding//src/import/csvimport.py=utf-8
-encoding//src/import/data_access.py=utf-8
-encoding//src/import/import_ui.py=utf-8
+encoding//src/csvimport.py=utf-8
+encoding//src/data_access.py=utf-8
+encoding//src/import_ui.py=utf-8
+encoding//src/main_ui.py=utf-8
