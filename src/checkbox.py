@@ -27,3 +27,12 @@ class Checkbox(object):
         medium_label.pack(side = TOP, pady = 20, padx = 20, anchor= W)
         medium_listbox = Listbox(frame)
         medium_listbox.pack(side=TOP, padx = 20)
+        
+        # Checkbox
+        ex_label = Label(frame, text = "Experiments")
+        ex_label.pack(side = TOP, pady = 20, padx = 20, anchor = W) 
+        for i in range(0,5):
+            check = "CheckMe " + str(i)
+            checkbox = Checkbutton(frame, text = check)
+            checkbox.pack(side = TOP, anchor = W, padx = 20)
+                 
