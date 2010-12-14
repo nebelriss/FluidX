@@ -1,8 +1,5 @@
-'''
-Created on 14 Dec 2010
-
-@author: nebelriss
-'''
+#!/usr/bin/python
+# encoding: utf-8
 
 from Tkinter import *
 
@@ -35,4 +32,3 @@ class Rightpanel(object):
             check = "CheckMe " + str(i)
             checkbox = Checkbutton(frame, text = check)
             checkbox.pack(side = TOP, anchor = W, padx = 20)
-                 
