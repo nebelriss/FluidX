@@ -6,6 +6,8 @@ from tkFont import *
 from tkFileDialog import *
 from csvimport import *
 from tkMessageBox import *
+from data import *
+
 
 
 
@@ -130,6 +132,9 @@ class Import_ui(object):
             check = Csvimport(filepath, databasename)
             check.cvsread()
             ok = check.tosql()
+            
+            # sending databasename to main_ui
+            Data.saveata(self, databasename)
 
         #if Csvimport return True it mean that the import of the csv file to the sql was successful
         if ok == True:
