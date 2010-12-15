@@ -8,6 +8,7 @@ from data_access import *
 from plot import *
 from table import *
 from rightpanel import *
+from data import *
 
 
 class Main():
@@ -88,21 +89,12 @@ class Main():
         '''
         tab = Table(root)
         
-    def readdata(self, databasepath):
+    def savedata(self, databasepath):
         '''
         opening the database and get infos out of the sql
         '''
-        self.values = []
-        self.meta = {}
-        db = Experiment(databasepath)
-        values = db.load_values()
-        meta = db.load_metadata()
-        
         # store datas to lists
-        self.values.append(values)
-        self.meta.append(meta)
-        
-
+        Data.savedata(databasepath)
        
     
     def importer(self):
@@ -124,7 +116,7 @@ class Main():
         databasename = askopenfilename(**self.file_open)
         self.databasename.set(databasename)
         databasepath = self.databasename.get()
-        self.readdata(databasepath)
+        self.savedata(databasepath)
         
         
 
