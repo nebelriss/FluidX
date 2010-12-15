@@ -20,6 +20,8 @@ class Main():
         
         # init db name
         self.databasename = StringVar()
+        self.values = []
+        self.meta = []
 
         
         # Frames
@@ -51,7 +53,7 @@ class Main():
         button_exit.pack(side = RIGHT)
         
         
-        self.checkBox()
+        self.rightpanel()
         self.plot()
         
     def screenSize(self):
@@ -70,11 +72,14 @@ class Main():
         ''' 
         Plot(root, self.plot_frame, self.sw, self.sh)
         
-    def checkBox(self):
+    def rightpanel(self):
         '''
         
         '''
-        Rightpanel(self.right_frame)
+        try:
+            Rightpanel(self.right_frame, self.meta, self.values)
+        except AttributeError:
+            raise Exception("AttributeError: Main instance has no attribute 'values'")
         
           
     def table(self):
@@ -87,9 +92,15 @@ class Main():
         '''
         opening the database and get infos out of the sql
         '''
+        self.values = []
+        self.meta = {}
         db = Experiment(databasepath)
         values = db.load_values()
         meta = db.load_metadata()
+        
+        # store datas to lists
+        self.values.append(values)
+        self.meta.append(meta)
        
     
     def importer(self):
