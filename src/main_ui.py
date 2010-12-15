@@ -48,10 +48,10 @@ class Main():
         button_table = Button(top_frame, text = 'Table', height = 3, width = 7, command = self.table)
         button_exit = Button(top_frame, text = 'Exit', height = 3, width = 7, command = quit)
         # Button packers
-        button_open.pack(side = LEFT, anchor = W) 
-        button_import.pack(side = LEFT, padx = 5 ) 
-        button_table.pack(side = LEFT)
-        button_exit.pack(side = RIGHT)
+        button_open.pack(side = LEFT, anchor = W, pady = 2) 
+        button_import.pack(side = LEFT, padx = 5, pady = 2 ) 
+        button_table.pack(side = LEFT, pady = 2)
+        button_exit.pack(side = RIGHT, pady = 2, padx = 5)
         
         
         self.rightpanel()
@@ -85,7 +85,7 @@ class Main():
         '''
         
         '''
-        tab = Table(root)
+        t = Table(root)
         
     def savedata(self, databasepath):
         '''
