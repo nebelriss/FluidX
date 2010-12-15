@@ -14,8 +14,7 @@ class Plot(object):
         '''
         self.sw = sw
         self.sh = sh
-        print sw
-        print sh
+
         
         self.canvas = Canvas(frame, bg = "white")
         self.canvas.pack(expand = YES, fill = BOTH)

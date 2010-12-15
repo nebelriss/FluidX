@@ -29,7 +29,7 @@ class Main():
         top_frame = Frame(root, height = 65)
         main_frame = Frame(root)
         self.plot_frame = Frame(main_frame, relief =  SUNKEN)
-        self.right_frame = Frame(main_frame, width = 250, bg = 'red')
+        self.right_frame = Frame(main_frame, width = 250)
         # Frames pack
         top_frame.pack(side = TOP, fill = BOTH, expand = NO)
         main_frame.pack(fill = BOTH, expand = YES)
@@ -92,7 +92,8 @@ class Main():
         opening the database and get infos out of the sql
         '''
         # store datas to lists
-        Data.savedata(databasepath)
+        d = Data()
+        d.savedata(databasepath)
        
     
     def importer(self):

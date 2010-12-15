@@ -136,6 +136,7 @@ class Import_ui(object):
             # sending databasename to main_ui
             d = Data()
             d.saveata(str(databasename))
+            
 
         #if Csvimport return True it mean that the import of the csv file to the sql was successful
         if ok == True:
