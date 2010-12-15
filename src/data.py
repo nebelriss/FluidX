@@ -1,6 +1,7 @@
 #!/usr/bin/python
 # encoding: utf-8
 from data_access import *
+from boxes import *
 
 
 
@@ -22,7 +23,10 @@ class Data():
     def storedata(self, v, m):
         self.values.append(v)
         self.meta.append(m)
+        
 
+        inserToMotorbox(self.values, self.meta)
+        
     
     
     def getdata(self):
