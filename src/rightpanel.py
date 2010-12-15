@@ -22,7 +22,7 @@ class Rightpanel():
         self.values, self.meta = d.getdata()
         self.frame = frame
         
-                        #
+        #
         for i in range (0,len(self.meta)):
             meta_tmp = self.meta[i]
             print meta_tmp['additional_info']
@@ -30,21 +30,28 @@ class Rightpanel():
         #Labels for Listbox
         motor_label = Label(self.frame, text = "motors")
         motor_label.pack(side = TOP, pady = 20, padx = 20, anchor= W)
-        motor_listbox = Listbox(self.frame, selectmode = SINGLE, height = 4)
-        motor_listbox.pack(side=TOP, padx = 20)
+        self.motor_listbox = Listbox(self.frame, selectmode = SINGLE, height = 4)
+        self.motor_listbox.pack(side=TOP, padx = 20)
         
-        motor_listbox.insert(END, "series_nr 1")
-        motor_listbox.insert(END, "series_nr 2")
-        motor_listbox.insert(END, "series_nr 3")
+        self.motor_listbox.insert(END, "series_nr 1")
+        self.motor_listbox.insert(END, "series_nr 2")
+        self.motor_listbox.insert(END, "series_nr 3")
+        
+        # read selected in motor_listbox
+        self.motor_listbox.bind("<<ListboxSelect>>", self.sel_motor)
+            
         
         # Listbox
         medium_label = Label(self.frame, text = "mediums")
         medium_label.pack(side = TOP, pady = 20, padx = 20, anchor= W)
-        medium_listbox = Listbox(self.frame, selectmode = SINGLE, height = 3)
-        medium_listbox.pack(side=TOP, padx = 20)
-        medium_listbox.insert(END, "water")
-        medium_listbox.insert(END, "oil")
-        medium_listbox.insert(END, "ethonol")
+        self.medium_listbox = Listbox(self.frame, selectmode = SINGLE, height = 3)
+        self.medium_listbox.pack(side=TOP, padx = 20)
+        self.medium_listbox.insert(END, "water")
+        self.medium_listbox.insert(END, "oil")
+        self.medium_listbox.insert(END, "ethonol")
+        
+        #red selected in medium_listbox
+        self.medium_listbox.bind("<<ListboxSelect>>", self.sel_medium)
         
         
         
@@ -60,3 +67,12 @@ class Rightpanel():
             check = "CheckMe " + str(i)
             checkbox = Checkbutton(check_frame, text = check, bg = 'white')
             checkbox.pack(side = TOP, anchor = W,expand = NO)
+            
+            
+    def sel_motor(self, event):
+        self.selected_motor = self.motor_listbox.get(self.motor_listbox.curselection()[0])
+        print self.selected_motor
+
+    def sel_medium(self, event):       
+        self.selected_medium = self.medium_listbox.get(self.medium_listbox.curselection()[0])
+        print self.selected_medium
