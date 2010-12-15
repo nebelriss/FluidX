@@ -13,16 +13,20 @@ class Rightpanel(object):
         '''
         Constructor
         '''
+        #self.values = values
+        #self.meta = meta
+        
         #Labels for Listbox
         motor_label = Label(frame, text = "motors")
         motor_label.pack(side = TOP, pady = 20, padx = 20, anchor= W)
-        motor_listbox = Listbox(frame)
+        motor_listbox = Listbox(frame, selectmode = SINGLE)
         motor_listbox.pack(side=TOP, padx = 20)
+        motor_listbox.insert(END, "Test")
         
         # Listbox
         medium_label = Label(frame, text = "mediums")
         medium_label.pack(side = TOP, pady = 20, padx = 20, anchor= W)
-        medium_listbox = Listbox(frame)
+        medium_listbox = Listbox(frame, selectmode = SINGLE)
         medium_listbox.pack(side=TOP, padx = 20)
         
         # Checkbox
