@@ -77,10 +77,8 @@ class Main():
         '''
         
         '''
-        try:
-            Rightpanel(self.right_frame)
-        except AttributeError:
-            raise Exception("AttributeError: Main instance has no attribute 'values'")
+        Rightpanel(self.right_frame)
+
         
           
     def table(self):

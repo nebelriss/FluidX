@@ -134,7 +134,8 @@ class Import_ui(object):
             ok = check.tosql()
             
             # sending databasename to main_ui
-            Data.saveata(self, databasename)
+            d = Data()
+            d.saveata(str(databasename))
 
         #if Csvimport return True it mean that the import of the csv file to the sql was successful
         if ok == True:

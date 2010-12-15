@@ -2,6 +2,7 @@
 # encoding: utf-8
 
 from Tkinter import *
+from data import *
 
 
 class Rightpanel(object):
@@ -14,6 +15,9 @@ class Rightpanel(object):
         '''
         Constructor
         '''
+        # load data
+        d = Data()
+        values, meta = d.getdata()
         
         #Labels for Listbox
         motor_label = Label(frame, text = "motors")

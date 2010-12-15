@@ -3,6 +3,10 @@
 from data_access import *
 
 class Data():
+    
+    def __init__(self):
+        self.values = []
+        self.meta = []
  
     def saveata(self, dbpath):
         db = Experiment(dbpath)
@@ -19,4 +23,7 @@ class Data():
     
     
     def getdata(self):
-        return self.values, self.meta
+        values = self.values
+        meta = self.meta
+        
+        return values, meta
