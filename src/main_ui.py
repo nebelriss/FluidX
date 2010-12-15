@@ -77,7 +77,7 @@ class Main():
         
         '''
         try:
-            Rightpanel(self.right_frame, self.meta, self.values)
+            Rightpanel(self.right_frame)
         except AttributeError:
             raise Exception("AttributeError: Main instance has no attribute 'values'")
         
@@ -88,7 +88,7 @@ class Main():
         '''
         tab = Table(root)
         
-    def data(self, databasepath):
+    def readdata(self, databasepath):
         '''
         opening the database and get infos out of the sql
         '''
@@ -101,6 +101,8 @@ class Main():
         # store datas to lists
         self.values.append(values)
         self.meta.append(meta)
+        
+
        
     
     def importer(self):
@@ -122,7 +124,7 @@ class Main():
         databasename = askopenfilename(**self.file_open)
         self.databasename.set(databasename)
         databasepath = self.databasename.get()
-        self.data(databasepath)
+        self.readdata(databasepath)
         
         
 
