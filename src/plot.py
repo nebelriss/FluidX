@@ -31,10 +31,10 @@ class Plot(object):
         #Beschriftung der Achsenlinien
         for i in range(12):
             x = 70 + (i*40)
-            self.canvas.create_line(x,500,x,495, width = 2)
-            self.canvas.create_text(x,510, text='%d'% (20*i), anchor=N)   
+            self.canvas.create_line(x,self.sh-150,x,self.sh-155, width = 2)
+            self.canvas.create_text(x,self.sh-140, text='%d'% (20*i), anchor=N)   
         for i in range (12):
             y = 71 + (i*39)   
-            self.canvas.create_line(70,y,75,y, width = 2)
-            self.canvas.create_text(45,y, text='%d'% (-i+11), anchor=W)
+            self.canvas.create_line(self.sw-1010,y,self.sw-1005,y, width = 2)
+            self.canvas.create_text(self.sw-1025,y, text='%d'% (-i+11), anchor=W)
                     
