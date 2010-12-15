@@ -3,6 +3,7 @@
 
 from Tkinter import *
 
+
 class Rightpanel(object):
     '''
     classdocs
@@ -13,21 +14,24 @@ class Rightpanel(object):
         '''
         Constructor
         '''
-        #self.values = values
-        #self.meta = meta
         
         #Labels for Listbox
         motor_label = Label(frame, text = "motors")
         motor_label.pack(side = TOP, pady = 20, padx = 20, anchor= W)
-        motor_listbox = Listbox(frame, selectmode = SINGLE)
+        motor_listbox = Listbox(frame, selectmode = SINGLE, height = 4)
         motor_listbox.pack(side=TOP, padx = 20)
-        motor_listbox.insert(END, "Test")
+        motor_listbox.insert(END, "series_nr 1")
+        motor_listbox.insert(END, "series_nr 2")
+        motor_listbox.insert(END, "series_nr 3")
         
         # Listbox
         medium_label = Label(frame, text = "mediums")
         medium_label.pack(side = TOP, pady = 20, padx = 20, anchor= W)
-        medium_listbox = Listbox(frame, selectmode = SINGLE)
+        medium_listbox = Listbox(frame, selectmode = SINGLE, height = 3)
         medium_listbox.pack(side=TOP, padx = 20)
+        medium_listbox.insert(END, "water")
+        medium_listbox.insert(END, "oil")
+        medium_listbox.insert(END, "ethonol")
         
         # Checkbox
         ex_label = Label(frame, text = "Experiments")
