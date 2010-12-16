@@ -1,7 +1,6 @@
 #!/usr/bin/python
 # encoding: utf-8
 from data_access import *
-from boxes import *
 
 
 
@@ -15,7 +14,6 @@ class Data():
         db = Experiment(dbpath)
         values = db.load_values()
         meta = db.load_metadata()
-        
         self.storedata(values, meta)
         print dbpath
 
@@ -23,14 +21,8 @@ class Data():
     def storedata(self, v, m):
         self.values.append(v)
         self.meta.append(m)
-        
 
-        inserToMotorbox(self.values, self.meta)
-        
-    
     
     def getdata(self):
-        values = self.values
-        meta = self.meta
-        
-        return values, meta
+       
+        return self.values, self.meta

@@ -23,7 +23,7 @@ class Csvimport(object):
         # init of the given values
         self.filepath = filepath # path to the csv file
         self.dbpath = dbpath # path to the db file
-        self.vn = 11 # number of values given by groups
+        self.vn = 10 # number of values given by groups
         
     def cvsread(self):
         '''
@@ -83,6 +83,7 @@ class Csvimport(object):
                 # store values in db
                 row_tmp = row[2:]
                 db.store_metadata(meta)
+                print len(row_tmp)
                 db.store_values(int(id), [row_tmp])
                 
             else: pass
