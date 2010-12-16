@@ -23,6 +23,10 @@ class Main():
         self.values = []
         self.meta = []
         self.data = Data()
+        self.values_height = 3
+        self.values_id = 0
+        self.motor_control = []
+        self.media_control = []
 
         
         # Frames
@@ -144,30 +148,56 @@ class Main():
         # store datas to lists
         self.values, self.meta = self.data.getdata()
         self.canvas_data = []
-        id = 0
         # refresh entries in the listboxes
         for i in range(0, len(self.meta)):
             meta_tmp = self.meta[i]
             motor_meta = meta_tmp['exp_name']
+            # control if entry already exists
+            if len(self.motor_control) == 0:
+                self.motor_control.append(motor_meta)
+                # insert into the_listboxes
+                self.motor_listbox.insert(END, "M: " + str(motor_meta))
+            else:
+                for m in range(0,len(self.motor_control)):
+                    if motor_meta != self.motor_control[m]:
+                        self.motor_control.append(motor_meta)
+                        # insert into the_listboxes
+                        self.motor_listbox.insert(END, "M: " + str(motor_meta))
+                    else:
+                        pass
+                    
+
+        for i in range(0, len(self.meta)):
+            meta_tmp = self.meta[i]
             media_meta = meta_tmp['additional_info']
             # control if entry already exists
-            
-            # insert into the_listboxes
-            self.motor_listbox.insert(END, "M: " + str(motor_meta))
-            self.medium_listbox.insert(END, str(media_meta))
+            if len(self.media_control) == 0:
+                self.media_control.append(media_meta)
+                # insert into the_listboxes
+                self.medium_listbox.insert(END, str(media_meta))
+            else:
+                for m in range(0,len(self.media_control)):
+                    print "shit"
+                    if media_meta != self.media_control[m]:
+                        print "shit2"
+                        self.media_control.append(media_meta)
+                        # insert into the_listboxes
+                        self.medium_listbox.insert(END, str(media_meta))
+                    else:
+                        print "shit3"
+                        pass
             
             # create checkboxes
-            h = 1
 
             self.canvas_data.append([])
             for j in range(0, len(self.values)):
                 values = self.values[j]
                 for row in values:
-                    id = id + 1
-                    box_name = str(id) + ":  " + str(row[2]) + "/" + str(row[1]) + "/" + str(row[3])
+                    self.values_id += 1
+                    box_name = str(self.values_id) + ":  " + str(row[2]) + "/" + str(row[1]) + "/" + str(row[3])
                     self.values_listbox.insert(END, str(box_name))
-                    self.values_listbox.configure(height = h)
-                    h = h + 1
+                    self.values_listbox.configure(height = self.values_height)
+                    self.values_height += 1
                     # wirte infos to List
                     self.canvas_data[j].append([meta_tmp, row])
 
@@ -229,8 +259,9 @@ class Main():
         '''
         
         '''
-        self.selected_motor = self.motor_listbox.get(self.motor_listbox.curselection()[0])
-        print self.selected_motor
+        for i in range(len(self.motor_listbox.curselection())):
+            self.selected_motor = self.motor_listbox.get(self.motor_listbox.curselection()[i])
+            print self.selected_motor
 
     def sel_medium(self, event): 
         '''
