@@ -101,9 +101,10 @@ class Table(object):
 
 if __name__ == '__main__':
     tk = Tk()
+    #top list 
     mlb1 = Label(tk, text='Messreihenauswahl').pack()
     mlb1 = Table(tk,(('Pumpennummer', 10), ('GruppenID', 10), ('Gruppenname', 10), ('Medium', 10)))
-    mlb1.pack(fill=BOTH,side=TOP)
+    mlb1.pack(fill=BOTH,side=TOP)    
     mlb2 = Label(tk, text='Messwerte').pack()
     mlb2 = Table(tk,(('ID', 10), ('Date',10), ('Gegendruck [kPa]',10), ('Temperatur[C]',10), ('Frequenz[Hz]',10), ('0,5mL',5), ('1mL',5), ('1,5mL',5), ('2mL',5), ('2,5mL',5), ('Fluss[ml/min]',10), ('Strom',10), ('Spannung',10), ('Leistungsaufnahme[mW]',10)))
     mlb2.pack(expand=YES,fill=BOTH,side=LEFT)
