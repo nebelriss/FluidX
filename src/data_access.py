@@ -54,7 +54,7 @@ class Experiment:
         """
         # number of x values
         self.nvalues = vn;
-
+        print p
         self.conn = sqlite3.connect(p)
         self.c = self.conn.cursor()
 
