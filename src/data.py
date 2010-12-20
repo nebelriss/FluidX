@@ -14,7 +14,6 @@ class Data():
         db = Experiment(dbpath)
         values = db.load_values()
         meta = db.load_metadata()
-        
         self.storedata(values, meta)
         print dbpath
 
@@ -24,9 +23,6 @@ class Data():
         self.meta.append(m)
 
     
-    
     def getdata(self):
-        values = self.values
-        meta = self.meta
-        
-        return values, meta
+       
+        return self.values, self.meta
