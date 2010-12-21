@@ -60,12 +60,12 @@ class Plot(object):
         self.canvas.delete("plot")
         try:
             self.value_list[idx][1] = None
-            self.value_list[idx][2] = None
+
         except IndexError:
             print "Index Error"
   
-        self.value_list[idx][1] = meta
-        self.value_list[idx][2] = values
+
+        self.value_list[idx][1] = values
         print self.value_list
         xZeroTotal = 70
         yZeroTotal = self.sh-150
@@ -76,8 +76,7 @@ class Plot(object):
         valuesList = self.value_list
         for i in range(len(sel_idx)):
             for row in valuesList:
-                meta = row[1]
-                value = row[2]
+                value = row[0]
                 for row in values:
                     endValue = row
                 

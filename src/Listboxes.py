@@ -77,7 +77,7 @@ class Listboxes():
 
             
         self.plot.createline(self.meta, self.canvas_data, self.idx, sel_idx)
-        self.idx += 1            
+    
     
 
                 
