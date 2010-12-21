@@ -95,7 +95,7 @@ class Main():
 #screen size##########################################################################################        
     def screenSize(self):
         '''
-        asking for screen witdh and height
+        asking for screen width and height
         '''
         self.sw = root.winfo_screenwidth()
         self.sh = root.winfo_screenheight()
@@ -168,7 +168,7 @@ class Main():
                     self.values_listbox.insert(END, str(box_name))
                     self.values_listbox.configure(height = h)
                     h = h + 1
-                    # wirte infos to List
+                    # write infos to List
                     self.canvas_data[j].append([meta_tmp, row])
 
 ###################################################################################################
