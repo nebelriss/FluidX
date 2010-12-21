@@ -66,7 +66,7 @@ class Plot(object):
   
         self.value_list[idx][1] = meta
         self.value_list[idx][2] = values
-        
+        print self.value_list
         xZeroTotal = 70
         yZeroTotal = self.sh-150
 
@@ -77,7 +77,7 @@ class Plot(object):
         for i in range(len(sel_idx)):
             for row in valuesList:
                 meta = row[1]
-                values = row[2]
+                value = row[2]
                 for row in values:
                     endValue = row
                 
