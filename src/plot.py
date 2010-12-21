@@ -52,7 +52,7 @@ class Plot(object):
         # divisor=Variable  Rest=constant
         #(-i(2)+(2*20)) 2=Variable  20= range(21)-1
             
-    def createline (self, meta, values, idx):
+    def createline (self, meta, values, idx, sel_idx):
         '''
         
         '''
@@ -70,31 +70,23 @@ class Plot(object):
         yZeroTotal = self.sh-150
 
         xScale = 20
-        yScale = 1
-
-
-        
-        
+        yScale = 20
         # draw lines
         valuesList = self.value_list
         for row in valuesList:
             meta = row[1]
             values = row[2]
             for row in values:
+            	print row
                 endValue = row
                 
                 xZero = xZeroTotal
                 yZero = yZeroTotal
                 xPoint = xZero
                 yPoint = yZero
-                for i in range(3,8):
-                    try:
-                        vname = 'v' + str(i) + '_desc'
-                        yValue = float(meta[vname])
-                        xValue = float(endValue[i])
-                    except ValueError:
-                        break
-                        print "ValueError, value is empty"
+                for row in endValue:
+                    xValue = row[1]
+                    yValue = row[4]
 
                     xValue = (xValue / xScale)
                     yValue = (yValue / yScale)

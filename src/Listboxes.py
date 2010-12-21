@@ -17,7 +17,7 @@ class Listboxes():
         '''
         self.right_frame = frame
         self.i = 0
-        self.values_height = 1
+        self.values_height = 3
         self.meta = meta
         self.values = values
         self.idx = idx
@@ -28,6 +28,7 @@ class Listboxes():
         
         # get meta
         meta_tmp = self.meta[self.idx]
+        self.canvas_data = self.values[self.idx]
         date_meta = str(meta_tmp['date'])
         motor_meta = str(meta_tmp['exp_name'])
         media_meta = str(meta_tmp['additional_info'])
@@ -56,29 +57,26 @@ class Listboxes():
         self.canvas_data = []
         values_id = 0
         values = self.values[self.idx]
-        for row in values:
-            values_id += 1
-            box_name = str(values_id) + ":  " + str(row[2]) + "/" + str(row[1]) + "/" + str(row[3])
-            self.values_listbox.insert(END, str(box_name))
-            self.values_listbox.configure(height = self.values_height)
-            self.values_height += 1
-            # wirte infos to List
-            self.canvas_data.append([meta_tmp, row])
+
+        self.values_listbox.insert(END, "1. Druck")
+        self.values_listbox.insert(END, "2. Temperatur")
+        self.values_listbox.insert(END, "3. Frequenz")
+        # wirte infos to List
+        data = values
+        self.canvas_data.append(data)
+        print self.canvas_data
 
         self.plot.createlist(self.idx) 
                 
     def sel_values(self, event):
+        sel_idx = []
         self.sel_values_list = []
         for i in range(len(self.values_listbox.curselection())):
             sel_values = self.values_listbox.get(self.values_listbox.curselection()[i])
-            sel_nr = sel_values[0]
-            row = self.canvas_data[int(sel_nr)]
-            self.meta = row[0]
-            values = row[1]
-            self.sel_values_list.append(values)
+            sel_idx.append(sel_values[0])
         print self.idx
             
-        self.plot.createline(self.meta, self.sel_values_list, self.idx)
+        self.plot.createline(self.meta, self.canvas_data, self.idx, sel_idx)
             
     
 
