@@ -22,13 +22,8 @@ class Main():
         
         # init db name
         self.databasename = StringVar()
-        self.values = []
-        self.meta = []
         self.data = Data()
-        self.values_height = 3
-        self.values_id = 0
         self.idx = 0
-        self.i = 0
 
         
         # Frames
@@ -122,9 +117,6 @@ class Main():
         '''
         values, meta = self.data.getdata()
         lister = Listboxes(self.right_frame, meta, values, self.idx, self.plot)
-#        lister.start()
-        #lister.create_Listbox(meta, values, self.idx)
-        self.idx += 1
 ###################################################################################################
 
 
@@ -135,7 +127,7 @@ class Main():
         opens the importer window
         '''
         self.importer = Import_ui(root)
-        print str(self.importer)
+        self.savedata(self.importer)
 ##################################################################################################         
         
 
