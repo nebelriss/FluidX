@@ -5,7 +5,7 @@ from Tkinter import *
 import threading
 
 
-class Listboxes(threading.Thread):
+class Listboxes():
     '''
     classdocs
     '''
@@ -18,7 +18,6 @@ class Listboxes(threading.Thread):
         self.right_frame = frame
         self.i = 0
         self.values_height = 1
-        threading.Thread.__init__(self)
         self.meta = meta
         self.values = values
         self.idx = idx
