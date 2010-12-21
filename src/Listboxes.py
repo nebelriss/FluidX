@@ -36,7 +36,7 @@ class Listboxes(threading.Thread):
         
         #convert date
         date_txt = date_meta[6:8] + "." + date_meta[4:6] + "." + date_meta[:4] + " " + date_meta[8:10] + ":" + date_meta[10:]
-        motor_txt = "Motorrrrrrrrr: " + motor_meta
+        motor_txt = "Motor: " + motor_meta
         media_txt = "Media: " + media_meta
         # create Labels
         motor_label = Label(values_frame, text = motor_txt)
@@ -57,7 +57,6 @@ class Listboxes(threading.Thread):
         self.canvas_data = []
         values_id = 0
         values = self.values[self.idx]
-        print self.idx
         for row in values:
             values_id += 1
             box_name = str(values_id) + ":  " + str(row[2]) + "/" + str(row[1]) + "/" + str(row[3])
@@ -67,7 +66,7 @@ class Listboxes(threading.Thread):
             # wirte infos to List
             self.canvas_data.append([meta_tmp, row])
 
-            
+        self.plot.createlist(self.idx) 
                 
     def sel_values(self, event):
         self.sel_values_list = []
@@ -78,8 +77,9 @@ class Listboxes(threading.Thread):
             self.meta = row[0]
             values = row[1]
             self.sel_values_list.append(values)
+        print self.idx
             
-        self.plot.createline(self.sel_values_list)
+        self.plot.createline(self.meta, self.sel_values_list, self.idx)
             
     
 
