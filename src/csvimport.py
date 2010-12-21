@@ -63,7 +63,7 @@ class Csvimport(object):
             
             # test if the first value in each row is a digit and if its a valid id
             if id.isdigit and len(id) == 1:
-                meta.update({'exp_name':row[1], 'actor_name': unicode(str(row[2])), 'additional_info': row[3]})
+                meta.update({'exp_name':row[1], 'actor_name': unicode(str(row[2])), 'additional_info': row[3], 'date': row[4]})
                 
             elif row[0] == 'ID':
                 n = 1  
@@ -78,8 +78,7 @@ class Csvimport(object):
                     n = n + 1
         
             
-            elif id.isdigit() and len(id) == 4:
-                meta.update({'date': row[1]})                
+            elif id.isdigit() and len(id) == 4: 
                 # store values in db
                 row_tmp = row[2:]
                 db.store_metadata(meta)

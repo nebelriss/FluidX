@@ -14,6 +14,7 @@ class Plot(object):
         '''
         self.sw = sw
         self.sh = sh
+        self.value_list = []
         
         
         self.canvas = Canvas(frame, bg = "white")
@@ -49,8 +50,27 @@ class Plot(object):
         # divisor=Variable  Rest=constant
         #(-i(2)+(2*20)) 2=Variable  20= range(21)-1
             
-    def createCanvas (self,meta,values):
+    def createline (self, meta, values, idx):
         '''
         
         '''
+        try:
+            self.value_list[idx][1] = None
+            self.value_list[idx][2] = None
+        except IndexError:
+            print "Index Error"
+  
+        self.value_list[idx][1] = meta
+        self.value_list[idx][2] = values
+        
+        self.canvas.create_line(self.sw-315,self.sh-150, 130,200, fill='red' )
+        
+    def createlist(self, idx):
+        '''
+        
+        '''
+        self.value_list.append([idx])
+        self.value_list[idx].append(None)
+        self.value_list[idx].append(None)
+        print self.value_list
         

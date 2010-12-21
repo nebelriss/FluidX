@@ -8,6 +8,8 @@ from data_access import *
 from plot import *
 from table import *
 from data import *
+from Listboxes import *
+import threading
 
 
 class Main():
@@ -23,6 +25,10 @@ class Main():
         self.values = []
         self.meta = []
         self.data = Data()
+        self.values_height = 3
+        self.values_id = 0
+        self.idx = 0
+        self.i = 0
 
         
         # Frames
@@ -53,49 +59,13 @@ class Main():
         button_table.pack(side = LEFT, pady = 2)
         button_exit.pack(side = RIGHT, pady = 2, padx = 5)
         
-        #right panel#
-        #Labels for Listbox
-        motor_label = Label(self.right_frame, text = "motors")
-        motor_label.pack(side = TOP, pady = 20, padx = 20, anchor= W)
-        self.motor_listbox = Listbox(self.right_frame, selectmode = SINGLE, height = 4)
-        self.motor_listbox.pack(side=TOP, padx = 20)      
-       
-        # read selected in motor_listbox
-        self.motor_listbox.bind("<<ListboxSelect>>", self.sel_motor)
-            
-        
-        # Listbox
-        medium_label = Label(self.right_frame, text = "mediums")
-        medium_label.pack(side = TOP, pady = 20, padx = 20, anchor= W)
-        self.medium_listbox = Listbox(self.right_frame, selectmode = SINGLE, height = 3)
-        self.medium_listbox.pack(side=TOP, padx = 20)
-        
-        #read selected in medium_listbox
-        self.medium_listbox.bind("<<ListboxSelect>>", self.sel_medium)
-        
-        
-        
-        
-        # Values label
-        ex_label = Label(self.right_frame, text = "Experiments")
-        ex_label.pack(side = TOP, anchor = W, pady = 20, padx = 20)
-    
-        
-        # Frame for checkboxes
-        self.values_frame = Frame(self.right_frame)
-        self.values_frame.pack(side =TOP, padx = 20, fill = BOTH, expand = NO)
-        self.values_listbox = Listbox(self.values_frame, selectmode = MULTIPLE, height = 4)
-        self.values_listbox.pack(side = TOP, fill = BOTH, expand = YES)
-        self.values_listbox.bind("<<ListboxSelect>>", self.sel_values)
-        
-        
         self.plot()
         
         
 #screen size##########################################################################################        
     def screenSize(self):
         '''
-        asking for screen width and height
+        asking for screen witdh and height
         '''
         self.sw = root.winfo_screenwidth()
         self.sh = root.winfo_screenheight()
@@ -110,11 +80,20 @@ class Main():
         '''
         
         ''' 
-        plot = Plot(root, self.plot_frame, self.sw, self.sh)
+        self.plot = Plot(root, self.plot_frame, self.sw, self.sh)
 ###################################################################################################
 
+#updateplot##############################################################################################      
+    def updateplot(self, meta, values):
+        '''
         
-      
+        ''' 
+        canvas_data = []
+        canvas_data.append([])
+        print canvas_data
+###################################################################################################
+
+
 #save data##########################################################################################           
     def table(self):
         '''
@@ -141,66 +120,22 @@ class Main():
         '''
 
         '''
-        # store datas to lists
-        self.values, self.meta = self.data.getdata()
-        self.canvas_data = []
-        id = 0
-        # refresh entries in the listboxes
-        for i in range(0, len(self.meta)):
-            meta_tmp = self.meta[i]
-            motor_meta = meta_tmp['exp_name']
-            media_meta = meta_tmp['additional_info']
-            # control if entry already exists
-            
-            # insert into the_listboxes
-            self.motor_listbox.insert(END, "M: " + str(motor_meta))
-            self.medium_listbox.insert(END, str(media_meta))
-            
-            # create checkboxes
-            h = 1
-
-            self.canvas_data.append([])
-            for j in range(0, len(self.values)):
-                values = self.values[j]
-                for row in values:
-                    id = id + 1
-                    box_name = str(id) + ":  " + str(row[2]) + "/" + str(row[1]) + "/" + str(row[3])
-                    self.values_listbox.insert(END, str(box_name))
-                    self.values_listbox.configure(height = h)
-                    h = h + 1
-                    # write infos to List
-                    self.canvas_data[j].append([meta_tmp, row])
-
+        values, meta = self.data.getdata()
+        lister = Listboxes(self.right_frame, meta, values, self.idx, self.plot)
+#        lister.start()
+        #lister.create_Listbox(meta, values, self.idx)
+        self.idx += 1
 ###################################################################################################
 
 
 
-# events for values_listbox #############################################################################       
-    def sel_values(self, event):
-        '''
-        
-        '''
-
-        for i in range(len(self.values_listbox.curselection())):
-            self.selected_values = self.values_listbox.get(self.values_listbox.curselection()[i])
-            sel_nr = self.selected_values[0]
-            for row in self.canvas_data:
-                meta = row[int(sel_nr)][0]
-                values = row[int(sel_nr)][1]
-                
-                plot.createCanvas(meta, row)
-
-        print
-################################################################################################## 
-
-
-       
 #importer##########################################################################################
     def importer(self):
         '''
         opens the importer window
         '''
-        self.i = Import_ui(root)
+        self.importer = Import_ui(root)
+        print str(self.importer)
 ##################################################################################################         
         
 
@@ -220,30 +155,12 @@ class Main():
         databasepath = self.databasename.get()
         self.savedata(databasepath)
 ################################################################################################## 
-        
-
 
         
-# events for motor and medium listbox #############################################################################       
-    def sel_motor(self, event):
-        '''
-        
-        '''
-        self.selected_motor = self.motor_listbox.get(self.motor_listbox.curselection()[0])
-        print self.selected_motor
-
-    def sel_medium(self, event): 
-        '''
-         
-        '''
-        self.selected_medium = self.medium_listbox.get(self.medium_listbox.curselection()[0])
-        print self.selected_medium
-##################################################################################################        
         
 
 
 root = Tk()
 root.title("FluidX - 0.1")
-
 main = Main(root)
 root.mainloop()

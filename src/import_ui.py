@@ -138,6 +138,7 @@ class Import_ui(object):
         #if Csvimport return True it mean that the import of the csv file to the sql was successful
         if ok == True:
             self.child.destroy()
+            return databasename
         #if the import was iterrupted an error message will be showed
         else:
             showwarning("Import Error", "Import the Database\n wasn't successful!")
