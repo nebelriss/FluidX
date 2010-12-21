@@ -56,6 +56,7 @@ class Plot(object):
         '''
         
         '''
+        print sel_idx
         self.canvas.delete("plot")
         try:
             self.value_list[idx][1] = None
@@ -73,32 +74,43 @@ class Plot(object):
         yScale = 20
         # draw lines
         valuesList = self.value_list
-        for row in valuesList:
-            meta = row[1]
-            values = row[2]
-            for row in values:
-            	print row
-                endValue = row
+        for i in range(len(sel_idx)):
+            for row in valuesList:
+                meta = row[1]
+                values = row[2]
+                for row in values:
+                    endValue = row
                 
-                xZero = xZeroTotal
-                yZero = yZeroTotal
-                xPoint = xZero
-                yPoint = yZero
-                for row in endValue:
-                    xValue = row[1]
-                    yValue = row[4]
-
-                    xValue = (xValue / xScale)
-                    yValue = (yValue / yScale)
+                    xZero = xZeroTotal
+                    yZero = yZeroTotal
+                    xPoint = xZero
+                    yPoint = yZero
+                    print i
+                    for row in endValue:
+                        if sel_idx[i] == '1':
+                            xValue = row[1]
+                            yValue = row[5]                            
+                        elif sel_idx[i] == '2':
+                            xValue = row[1]
+                            yValue = row[4]
+                        elif sel_idx[i] == '3':
+                            xValue = row[1]
+                            yValue = row[6] 
+                        else:
+                            print "none haha"
                     
-                    xPoint = xPoint + (xValue * self.dist_x)
-                    yPoint = yPoint - (yValue * self.dist_y)
+
+                        xValue = (xValue / xScale)
+                        yValue = (yValue / yScale)
+                    
+                        xPoint = xPoint + (xValue * self.dist_x)
+                        yPoint = yPoint - (yValue * self.dist_y)
 
 
-                    self.canvas.create_line(xZero, yZero, xPoint, yPoint, fill='red', width = 3, tag = "plot")
+                        self.canvas.create_line(xZero, yZero, xPoint, yPoint, fill='red', width = 3, tag = "plot")
 
-                    xZero = xPoint
-                    yZero = yPoint
+                        xZero = xPoint
+                        yZero = yPoint
 
 
         

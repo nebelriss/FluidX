@@ -74,10 +74,10 @@ class Listboxes():
         for i in range(len(self.values_listbox.curselection())):
             sel_values = self.values_listbox.get(self.values_listbox.curselection()[i])
             sel_idx.append(sel_values[0])
-        print self.idx
+
             
         self.plot.createline(self.meta, self.canvas_data, self.idx, sel_idx)
-            
+        self.idx += 1            
     
 
                 
