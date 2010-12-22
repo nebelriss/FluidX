@@ -5,6 +5,7 @@ Created on 14 Dec 2010
 '''
 from Tkinter import *
 from Canvas import *
+from math import *
 
 class Plot(object):
     
@@ -16,10 +17,19 @@ class Plot(object):
         self.sh = sh
         self.value_list = []
         self.frame = frame
-        
-        
-        self.canvas = Canvas(frame, bg = "white")
+        self.canvas = Canvas(self.frame, bg = "white")
         self.canvas.pack(expand = YES, fill = BOTH)
+        
+
+
+        #self.createGrid(0,0)
+        
+    def createGrid(self):        
+        '''
+        
+        '''
+        # delete all text
+        self.canvas.delete("text")                
         
         #Axis
         self.canvas.create_line(self.sw-315, self.sh-150, 50, self.sh-150, fill = "black", width = 1)
@@ -32,21 +42,24 @@ class Plot(object):
         self.canvas.create_text(self.sw-315,self.sh-120, text= x)
         
         #labeling for axis
-        maximumx = 21
-        maximumy = 11
-        interval = 1
-        divisor = 1.7
-        self.dist_x = (sh-150)/15 
-        self.dist_y = 70/divisor
+        xInterval = 2
+        yInterval = 0.2       
+        maximumx = ((self.xMax) + 1) / xInterval
+        maximumy = ((self.yMax) + 1) / yInterval
+
+        
+        print "dist................................"
+        print self.dist_x
+        print self.dist_y
         
         for i in range(maximumx):
-            x = 70 + (i*self.dist_x)
+            x = 70 + (i * self.dist_x * xInterval)
             self.canvas.create_line(x,self.sh-150,x,self.sh-155, width = 2)
-            self.canvas.create_text(x,self.sh-140, text='%d'% (20*i), anchor=N)   
-        for i in range (maximumy):
-            y = self.sh-self.dist_y*(5*divisor)-(200 +(1.5*(5*divisor))) + (i*self.dist_y)   
+            self.canvas.create_text(x,self.sh-140, text='%d'% (i * xInterval), anchor=N, tag = "text")   
+        for i in range (int(maximumy)):
+            y = self.sh-150-(i * self.dist_y * yInterval)   
             self.canvas.create_line(70,y,75,y, width = 2)
-            self.canvas.create_text(45,y, text='%d'% (-i*(interval)+(interval*(maximumy-1))), anchor=W)
+            self.canvas.create_text(45,y, text=str((i*yInterval)), anchor=W, tag = "text")
             
         # y=(5*divisor)-(200 +(1,5*(5*divisor))) divisor=(3.3)
         # divisor=Variable  Rest=constant
@@ -66,18 +79,17 @@ class Plot(object):
   
 
         self.value_list[idx][1] = values
+        self.value_list[idx][2] = sel_idx
         print self.value_list
         xZeroTotal = 70
         yZeroTotal = self.sh-150
 
-        xScale = 20
-        yScale = 40
-        # draw lines
-        valuesList = self.value_list
-        for i in range(len(sel_idx)):
-            
-            for row in valuesList:
-                values = row[1]
+        self.getMax(self.value_list)
+
+        # draw lines  
+        for row in self.value_list:
+            values = row[1]
+            for item in row[2]:
                 for row in values:
                     endValue = row
                 
@@ -86,23 +98,28 @@ class Plot(object):
                     xPoint = xZero
                     yPoint = yZero
                     print "this is index"
-                    print i
                     for row in endValue:
-                        if sel_idx[i] == '1':
-                            xValue = row[1]
-                            yValue = row[5]                            
-                        elif sel_idx[i] == '2':
-                            xValue = row[1]
-                            yValue = row[4]
-                        elif sel_idx[i] == '3':
-                            xValue = row[1]
-                            yValue = row[6] 
+                        if item == '1':
+                            xValue = row[6]
+                            yValue = row[1]                            
+                        elif item == '2':
+                            xValue = row[7]
+                            yValue = row[1]
+                        elif item == '3':
+                            xValue = row[6]
+                            yValue = row[2]
+                        elif item == '4':
+                            xValue = row[7]
+                            yValue = row[2] 
+                        elif item == '5':
+                            xValue = row[6]
+                            yValue = row[3]
+                        elif item == '6':
+                            xValue = row[7]
+                            yValue = row[3]                                                                                                                                        
                         else:
                             print "none haha"
-                    
 
-                        xValue = (xValue / xScale)
-                        yValue = (yValue / yScale)
                     
                         xPoint = xPoint + (xValue * self.dist_x)
                         yPoint = yPoint - (yValue * self.dist_y)
@@ -114,6 +131,7 @@ class Plot(object):
                         yZero = yPoint
 
 
+
         
     def createlist(self, idx):
         '''
@@ -123,4 +141,39 @@ class Plot(object):
         print idx
         self.value_list.append([idx])
         self.value_list[idx].append(None)
+        self.value_list[idx].append(None)
+        
+    def getMax(self, value_list):
+        '''
+        
+        '''
+        self.xMax = 0
+        self.yMax = 0
+        changed = False
+                        
+        # get values
+        for row in value_list:
+            values = row[1]
+            for row in values:
+                endValue = row
+                for row in endValue:                                                  
+                    for i in range(1,3):
+        
+                        # check for max value                
+                        if self.xMax < row[i]:
+                            self.xMax = row[i]
+                            changed = True
+                    for i in range(6,7):
+                        if self.yMax < row[i]:
+                            self.yMax = row[i]
+                            changed = True
+                        if changed:
+                            print self.xMax
+                            print self.yMax
+            
+        self.dist_x = (self.sw - 400) / self.xMax 
+        print self.dist_x
+        self.dist_y = (self.sh - 500) / self.yMax 
+        print self.dist_y        
+        self.createGrid()
         

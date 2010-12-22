@@ -17,14 +17,17 @@ class Listboxes():
         '''
         self.right_frame = frame
         self.i = 0
-        self.values_height = 3
+        self.values_height = 1
         self.meta = meta
         self.values = values
         self.idx = idx
         self.plot = plot
-
+        
         values_frame = Frame(self.right_frame)
         values_frame.pack(side =TOP, padx = 20, fill = BOTH, expand = NO, pady = 10)
+        
+        # Scrollbar
+        
         
         # get meta
         meta_tmp = self.meta[self.idx]
@@ -57,10 +60,21 @@ class Listboxes():
         self.canvas_data = []
         values_id = 0
         values = self.values[self.idx]
+        
+        #inserting listboxes
+        print meta_tmp
+        id = 1
+        for i in range(1,4):
+            print "range"
+            desc = 'v' + str(i) + '_desc'
+            box_desc = meta_tmp[desc]
+            self.values_listbox.insert(END, str(id) + box_desc + ' - Sensor')
+            id += 1            
+            self.values_listbox.insert(END, str(id) + box_desc + ' - Waage')
+            id += 1
+            self.values_height += 2
+            self.values_listbox.configure(height = self.values_height)
 
-        self.values_listbox.insert(END, "1. Druck")
-        self.values_listbox.insert(END, "2. Temperatur")
-        self.values_listbox.insert(END, "3. Frequenz")
         # wirte infos to List
         data = values
         self.canvas_data.append(data)
@@ -78,7 +92,3 @@ class Listboxes():
         print "list:"
         print self.idx   
         self.plot.createline(self.meta, self.canvas_data, self.idx, sel_idx)
-
-    
-
-                

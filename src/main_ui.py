@@ -36,10 +36,7 @@ class Main():
         main_frame.pack(fill = BOTH, expand = YES)
         self.plot_frame.pack(side = LEFT, fill = BOTH, expand = YES)
         self.right_frame.pack(side = RIGHT, fill = BOTH, expand = NO)
-        
-        # Scrollbar
-        scrollbar = Scrollbar(self.right_frame)
-        scrollbar.pack(side=RIGHT, fill=Y)
+
     
     
         # Buttons are temporary until they get pics inside etc
