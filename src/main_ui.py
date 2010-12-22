@@ -45,6 +45,11 @@ class Main():
         # Scrollbar
         scrollbar = Scrollbar(self.right_frame)
         scrollbar.pack(side=RIGHT, fill=Y)
+        right_frame = Frame(self.right_frame, yscrollcommand=scrollbar.set)
+        for i in range(1000):
+            right_frame.insert(END, str(i))
+            right_frame.pack(side=RIGHT, fill=BOTH)
+            scrollbar.config(command=right_frame.yview)
     
     
         # Buttons are temporary until they get pics inside etc
@@ -153,7 +158,8 @@ class Main():
         dbpath = askopenfilename(**self.file_open)
         self.databasename.set(dbpath)
         databasepath = self.databasename.get()
-        self.savedata(databasepath)
+        self.savedata(str(databasepath))
+        print databasepath
 ################################################################################################## 
 
         
