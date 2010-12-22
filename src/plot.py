@@ -180,14 +180,3 @@ class Plot(object):
         print self.dist_y        
         self.createGrid()
         
-    def metabox(self):
-        '''
-        
-        '''
-        
-        metabox = Listbox(self.canvas, height = 8, selectmode = BROWSE)
-        metabox.pack(side = TOP, anchor = NE)
-        metabox.bind("<<ListboxSelect>>", selmetabox)
-        
-    def selmetabox(self, event):
-        
