@@ -78,8 +78,6 @@ class Listboxes():
         # wirte infos to List
         data = values
         self.canvas_data.append(data)
-        print self.canvas_data
-
         self.plot.createlist(self.idx) 
                 
     def sel_values(self, event):
@@ -88,7 +86,5 @@ class Listboxes():
         for i in range(len(self.values_listbox.curselection())):
             sel_values = self.values_listbox.get(self.values_listbox.curselection()[i])
             sel_idx.append(sel_values[0])
-
-        print "list:"
-        print self.idx   
+  
         self.plot.createline(self.meta, self.canvas_data, self.idx, sel_idx)

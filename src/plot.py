@@ -38,28 +38,27 @@ class Plot(object):
         #Text for Axis
         y = 'Volume (mL)'
         x = 'Time (seconds)'
-        self.canvas.create_text(70,40, text= y)
-        self.canvas.create_text(self.sw-315,self.sh-120, text= x)
+        self.canvas.create_text(70,40, text= y, tag = "text")
+        self.canvas.create_text(self.sw-315,self.sh-120, text= x, tag = "text")
         
         #labeling for axis
-        xInterval = 2
-        yInterval = 0.2       
-        maximumx = ((self.xMax) + 1) / xInterval
-        maximumy = ((self.yMax) + 1) / yInterval
+      
+        maximumx = ((self.xMax) + 1) / self.xInterval
+        maximumy = ((self.yMax) + 1) / self.yInterval
 
         
         print "dist................................"
         print self.dist_x
         print self.dist_y
         
-        for i in range(maximumx):
-            x = 70 + (i * self.dist_x * xInterval)
+        for i in range(int(maximumx)):
+            x = 70 + (i * self.dist_x * self.xInterval)
             self.canvas.create_line(x,self.sh-150,x,self.sh-155, width = 2)
-            self.canvas.create_text(x,self.sh-140, text='%d'% (i * xInterval), anchor=N, tag = "text")   
+            self.canvas.create_text(x,self.sh-140, text='%d'% (i * self.xInterval), anchor=N, tag = "text")   
         for i in range (int(maximumy)):
-            y = self.sh-150-(i * self.dist_y * yInterval)   
+            y = self.sh-150-(i * self.dist_y * self.yInterval)   
             self.canvas.create_line(70,y,75,y, width = 2)
-            self.canvas.create_text(45,y, text=str((i*yInterval)), anchor=W, tag = "text")
+            self.canvas.create_text(45,y, text=str((i * self.yInterval)), anchor=W, tag = "text")
             
         # y=(5*divisor)-(200 +(1,5*(5*divisor))) divisor=(3.3)
         # divisor=Variable  Rest=constant
@@ -69,6 +68,9 @@ class Plot(object):
         '''
         
         '''
+        self.xInterval = 2
+        self.yInterval = 0.2 
+        
         print sel_idx
         self.canvas.delete("plot")
         try:
@@ -85,7 +87,7 @@ class Plot(object):
         yZeroTotal = self.sh-150
 
         self.getMax(self.value_list)
-
+        
         # draw lines  
         for row in self.value_list:
             values = row[1]
@@ -100,29 +102,30 @@ class Plot(object):
                     print "this is index"
                     for row in endValue:
                         if item == '1':
-                            xValue = row[6]
-                            yValue = row[1]                            
+                            xValue = row[1]
+                            yValue = row[6]                            
                         elif item == '2':
-                            xValue = row[7]
-                            yValue = row[1]
+                            xValue = row[1]
+                            yValue = row[7]
                         elif item == '3':
-                            xValue = row[6]
-                            yValue = row[2]
+                            xValue = row[2]
+                            yValue = row[6]
                         elif item == '4':
-                            xValue = row[7]
-                            yValue = row[2] 
+                            xValue = row[2]
+                            yValue = row[7] 
                         elif item == '5':
-                            xValue = row[6]
-                            yValue = row[3]
+                            xValue = row[3]
+                            yValue = row[6]
                         elif item == '6':
-                            xValue = row[7]
-                            yValue = row[3]                                                                                                                                        
+                            xValue = row[3]
+                            yValue = row[7]                                                                                                                                        
                         else:
                             print "none haha"
 
-                    
-                        xPoint = xPoint + (xValue * self.dist_x)
-                        yPoint = yPoint - (yValue * self.dist_y)
+                        #xValue = xValue / self.xInterval/ 2
+                        #yValue = yValue / self.yInterval / 20
+                        xPoint = (xPoint + (xValue * self.dist_x) / self.xInterval) + 70
+                        yPoint = (yPoint + (yValue * self.dist_y) / self.yInterval) - 150
 
 
                         self.canvas.create_line(xZero, yZero, xPoint, yPoint, fill='red', width = 3, tag = "plot")
@@ -171,9 +174,20 @@ class Plot(object):
                             print self.xMax
                             print self.yMax
             
-        self.dist_x = (self.sw - 400) / self.xMax 
+        self.dist_x = (self.sw - 400) / self.xMax
         print self.dist_x
         self.dist_y = (self.sh - 500) / self.yMax 
         print self.dist_y        
         self.createGrid()
+        
+    def metabox(self):
+        '''
+        
+        '''
+        
+        metabox = Listbox(self.canvas, height = 8, selectmode = BROWSE)
+        metabox.pack(side = TOP, anchor = NE)
+        metabox.bind("<<ListboxSelect>>", selmetabox)
+        
+    def selmetabox(self, event):
         
