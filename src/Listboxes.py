@@ -2,7 +2,7 @@
 # encoding: utf-8
 
 from Tkinter import *
-import threading
+
 
 
 class Listboxes():
@@ -75,9 +75,10 @@ class Listboxes():
             sel_values = self.values_listbox.get(self.values_listbox.curselection()[i])
             sel_idx.append(sel_values[0])
 
-            
+        print "list:"
+        print self.idx   
         self.plot.createline(self.meta, self.canvas_data, self.idx, sel_idx)
-    
+
     
 
                 

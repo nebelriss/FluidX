@@ -9,7 +9,7 @@ from plot import *
 from table import *
 from data import *
 from Listboxes import *
-import threading
+
 
 
 class Main():
@@ -94,7 +94,8 @@ class Main():
         '''
         
         '''
-        t = MessureTable()
+        table = index()
+        table.__init__()
 
 ###################################################################################################
 
@@ -118,6 +119,7 @@ class Main():
         '''
         values, meta = self.data.getdata()
         lister = Listboxes(self.right_frame, meta, values, self.idx, self.plot)
+        self.idx += 1
 ###################################################################################################
 
 

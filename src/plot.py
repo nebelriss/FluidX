@@ -60,7 +60,7 @@ class Plot(object):
         self.canvas.delete("plot")
         try:
             self.value_list[idx][1] = None
-
+            print self.value_list
         except IndexError:
             print "Index Error"
   
@@ -71,12 +71,13 @@ class Plot(object):
         yZeroTotal = self.sh-150
 
         xScale = 20
-        yScale = 20
+        yScale = 40
         # draw lines
         valuesList = self.value_list
         for i in range(len(sel_idx)):
+            
             for row in valuesList:
-                value = row[0]
+                values = row[1]
                 for row in values:
                     endValue = row
                 
@@ -84,6 +85,7 @@ class Plot(object):
                     yZero = yZeroTotal
                     xPoint = xZero
                     yPoint = yZero
+                    print "this is index"
                     print i
                     for row in endValue:
                         if sel_idx[i] == '1':
@@ -117,7 +119,8 @@ class Plot(object):
         '''
         
         '''
+        print "this is " 
+        print idx
         self.value_list.append([idx])
-        self.value_list[idx].append(None)
         self.value_list[idx].append(None)
         
