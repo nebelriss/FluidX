@@ -5,7 +5,6 @@ Created on 14 Dec 2010
 '''
 from Tkinter import *
 from Canvas import *
-from math import *
 
 class Plot(object):
     
@@ -66,7 +65,7 @@ class Plot(object):
             
     def createline (self, meta, values, idx, sel_idx):
         '''
-        
+        Fist the given values are written in a list with the index number of the listbox and the selected items.
         '''
         self.xInterval = 2
         self.yInterval = 0.2 
@@ -87,6 +86,8 @@ class Plot(object):
         yZeroTotal = self.sh-150
 
         self.getMax(self.value_list)
+
+        
         
         # draw lines  
         for row in self.value_list:
@@ -94,41 +95,44 @@ class Plot(object):
             for item in row[2]:
                 for row in values:
                     endValue = row
-                
+
                     xZero = xZeroTotal
                     yZero = yZeroTotal
                     xPoint = xZero
-                    yPoint = yZero
+                    yPoint = yZero                    
                     print "this is index"
+                    
+                    # write xValue an yValue for the right selection
                     for row in endValue:
                         if item == '1':
-                            xValue = row[1]
+                            xValue = row[0]
                             yValue = row[6]                            
                         elif item == '2':
-                            xValue = row[1]
+                            xValue = row[0]
                             yValue = row[7]
                         elif item == '3':
-                            xValue = row[2]
+                            xValue = row[1]
                             yValue = row[6]
                         elif item == '4':
-                            xValue = row[2]
+                            xValue = row[1]
                             yValue = row[7] 
                         elif item == '5':
-                            xValue = row[3]
+                            xValue = row[2]
                             yValue = row[6]
                         elif item == '6':
-                            xValue = row[3]
+                            xValue = row[2]
                             yValue = row[7]                                                                                                                                        
                         else:
                             print "none haha"
 
                         #xValue = xValue / self.xInterval/ 2
                         #yValue = yValue / self.yInterval / 20
-                        xPoint = (xPoint + (xValue * self.dist_x) / self.xInterval) + 70
-                        yPoint = (yPoint + (yValue * self.dist_y) / self.yInterval) - 150
+                        xPoint = ((xValue) * self.dist_x) + 70
+                        yPoint = self.sh - ((yValue * self.dist_y) + 150)
 
 
                         self.canvas.create_line(xZero, yZero, xPoint, yPoint, fill='red', width = 3, tag = "plot")
+                        self.canvas.create_oval(xPoint - 4, yPoint - 4, xPoint + 4, yPoint + 4, fill = 'red', tag = "plot")
 
                         xZero = xPoint
                         yZero = yPoint
@@ -148,7 +152,7 @@ class Plot(object):
         
     def getMax(self, value_list):
         '''
-        
+        This method is trying to find the max value for the scale grid.
         '''
         self.xMax = 0
         self.yMax = 0

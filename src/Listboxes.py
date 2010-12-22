@@ -62,15 +62,13 @@ class Listboxes():
         values = self.values[self.idx]
         
         #inserting listboxes
-        print meta_tmp
         id = 1
         for i in range(1,4):
-            print "range"
             desc = 'v' + str(i) + '_desc'
             box_desc = meta_tmp[desc]
-            self.values_listbox.insert(END, str(id) + box_desc + ' - Sensor')
+            self.values_listbox.insert(END, str(id) + ". " + box_desc + ' - Sensor')
             id += 1            
-            self.values_listbox.insert(END, str(id) + box_desc + ' - Waage')
+            self.values_listbox.insert(END, str(id) + ". " + box_desc + ' - Waage')
             id += 1
             self.values_height += 2
             self.values_listbox.configure(height = self.values_height)

@@ -115,7 +115,7 @@ class Main():
 
         '''
         values, meta = self.data.getdata()
-        lister = Listboxes(self.right_frame, meta, values, self.idx, self.plot)
+        Listboxes(self.right_frame, meta, values, self.idx, self.plot)
         self.idx += 1
 ###################################################################################################
 
