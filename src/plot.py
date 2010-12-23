@@ -16,6 +16,8 @@ class Plot(object):
         self.sh = sh
         self.value_list = []
         self.frame = frame
+        self.meta_frame = Frame(self.frame)
+        self.meta_frame.pack(sid = TOP)        
         self.canvas = Canvas(self.frame, bg = "white")
         self.canvas.pack(expand = YES, fill = BOTH)
         
@@ -63,12 +65,14 @@ class Plot(object):
         # divisor=Variable  Rest=constant
         #(-i(2)+(2*20)) 2=Variable  20= range(21)-1
             
-    def createline (self, meta, values, idx, sel_idx):
+    def createline (self, meta, values, idx, sel_idx, metabox):
         '''
         Fist the given values are written in a list with the index number of the listbox and the selected items.
         '''
         self.xInterval = 2
-        self.yInterval = 0.2 
+        self.yInterval = 0.2
+        self.metabox = metabox
+        metabox_data = []
         
         print sel_idx
         self.canvas.delete("plot")
@@ -93,6 +97,8 @@ class Plot(object):
         for row in self.value_list:
             values = row[1]
             for item in row[2]:
+                print item
+                metabox_data.append(item)
                 for row in values:
                     endValue = row
 
@@ -104,37 +110,40 @@ class Plot(object):
                     
                     # write xValue an yValue for the right selection
                     for row in endValue:
-                        if item == '1':
+                        if item[0] == '1':
                             xValue = row[0]
                             yValue = row[6]                            
-                        elif item == '2':
+                        elif item[0] == '2':
                             xValue = row[0]
                             yValue = row[7]
-                        elif item == '3':
+                        elif item[0] == '3':
                             xValue = row[1]
                             yValue = row[6]
-                        elif item == '4':
+                        elif item[0] == '4':
                             xValue = row[1]
                             yValue = row[7] 
-                        elif item == '5':
+                        elif item[0] == '5':
                             xValue = row[2]
                             yValue = row[6]
-                        elif item == '6':
+                        elif item[0] == '6':
                             xValue = row[2]
                             yValue = row[7]                                                                                                                                        
                         else:
-                            print "none haha"
-
+                            pass
+                        
+                        #send item to metabox
+                        
                         xPoint = (xValue * self.dist_x) + 70
                         yPoint = self.sh - ((yValue * self.dist_y) + 150)
-
 
                         self.canvas.create_line(xZero, yZero, xPoint, yPoint, fill='red', width = 3, tag = "plot")
                         self.canvas.create_oval(xPoint - 4, yPoint - 4, xPoint + 4, yPoint + 4, fill = 'red', outline = 'red', tag = "plot")
 
                         xZero = xPoint
                         yZero = yPoint
-
+                    
+                    
+        
 
 
         
@@ -180,5 +189,4 @@ class Plot(object):
         print self.dist_x
         self.dist_y = (self.sh - 500) / self.yMax 
         print self.dist_y        
-        self.createGrid()
-        
+        self.createGrid()     

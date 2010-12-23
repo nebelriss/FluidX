@@ -9,15 +9,38 @@ class Metabox(object):
     '''
 
 
-    def __init__(self, frame):
+    def __init__(self, frame, meta_height):
         '''
         Constructor
         '''
-        self.meta_frame = Frame(self.right_frame)
-        self.meta_frame.pack(side = TOP, padx = 20, pady = 10)
+        
+        # new frame for the metabox
+
+        
+        title = Label(frame, text = "Your Selection")
+        title.pack(side = TOP, anchor = W)
+        
+        desc = Label(frame, text = "click to sel color")
+        desc.pack(side = TOP, anchor = W)
+        
+        self.meta_listbox = Listbox(frame, selectmode = SINGLE, height = meta_height)
+        self.meta_listbox.pack(side = TOP, anchor = NW)
+        
+    def insert(self, meta_data):
+        '''
+        
+        '''
+        # delete all entrys
+        self.meta_listbox.delete(0, END)
+        
+        # write new entrys to the list
+        for item in meta_data:
+            print item
+            self.meta_listbox.insert(item)
         
         
-        self.meta_listbox = Listbox(self.meta_frame, selectmode = SINGLE, height = self.meta_height)
-        self.meta_listbox.pack(side = TOP, anchor = N)
+    def getcolor(self):
+        '''
         
+        '''
         
