@@ -23,7 +23,7 @@ class Csvimport(object):
         # init of the given values
         self.filepath = filepath # path to the csv file
         self.dbpath = dbpath # path to the db file
-        self.vn = 10 # number of values given by groups
+        self.vn = 6 # number of values given by groups
         
     def cvsread(self):
         '''
@@ -68,7 +68,7 @@ class Csvimport(object):
             elif row[0] == 'ID':
                 n = 1  
                              
-                for i in range(2,len(row)):
+                for i in range(1,len(row)):
                     metaunit = 'v' + str(n) + '_unit'
                     metadesc = 'v' + str(n) + '_desc'
                     word = row[i]

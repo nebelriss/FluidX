@@ -9,7 +9,7 @@ from plot import *
 from table import *
 from data import *
 from Listboxes import *
-import threading
+
 
 
 class Main():
@@ -22,13 +22,8 @@ class Main():
         
         # init db name
         self.databasename = StringVar()
-        self.values = []
-        self.meta = []
         self.data = Data()
-        self.values_height = 3
-        self.values_id = 0
         self.idx = 0
-        self.i = 0
 
         
         # Frames
@@ -41,19 +36,22 @@ class Main():
         main_frame.pack(fill = BOTH, expand = YES)
         self.plot_frame.pack(side = LEFT, fill = BOTH, expand = YES)
         self.right_frame.pack(side = RIGHT, fill = BOTH, expand = NO)
-        
+
     
         # Buttons are temporary until they get pics inside etc
         # Buttons in the top_frame
         button_open = Button(top_frame, text = 'Open', height = 3, width = 7, command = self.fileOpen)
         button_import = Button(top_frame, text = 'Import', height = 3, width = 7, command = self.importer)
-        button_table = Button(top_frame, text = 'Table', height = 3, width = 7, command = self.table)
+        button_table = Button(top_frame, text = 'Table', height = 3, width = 7, command = self.table, state = DISABLED)
         button_exit = Button(top_frame, text = 'Exit', height = 3, width = 7, command = quit)
         # Button packers
         button_open.pack(side = LEFT, anchor = W, pady = 2) 
         button_import.pack(side = LEFT, padx = 5, pady = 2 ) 
         button_table.pack(side = LEFT, pady = 2)
         button_exit.pack(side = RIGHT, pady = 2, padx = 5)
+        
+        title = Label(self.right_frame, text = "left click to print to plot\n right click to open metadata")
+        title.pack(side = TOP, anchor = W)
         
         self.plot()
         
@@ -86,7 +84,6 @@ class Main():
         ''' 
         canvas_data = []
         canvas_data.append([])
-        print canvas_data
 ###################################################################################################
 
 
@@ -95,7 +92,9 @@ class Main():
         '''
         
         '''
-        t = Table(root)
+        table = index()
+        table.__init__()
+
 ###################################################################################################
 
         
@@ -117,9 +116,7 @@ class Main():
 
         '''
         values, meta = self.data.getdata()
-        lister = Listboxes(self.right_frame, meta, values, self.idx, self.plot)
-#        lister.start()
-        #lister.create_Listbox(meta, values, self.idx)
+        Listboxes(self.right_frame, meta, values, self.idx, self.plot)
         self.idx += 1
 ###################################################################################################
 
@@ -131,7 +128,7 @@ class Main():
         opens the importer window
         '''
         self.importer = Import_ui(root)
-        print str(self.importer)
+        self.savedata(self.importer)
 ##################################################################################################         
         
 
@@ -158,6 +155,6 @@ class Main():
 
 
 root = Tk()
-root.title("FluidX - 0.1")
+root.title("FluidX - 0.2")
 main = Main(root)
 root.mainloop()
