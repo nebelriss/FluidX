@@ -42,15 +42,6 @@ class Main():
         self.plot_frame.pack(side = LEFT, fill = BOTH, expand = YES)
         self.right_frame.pack(side = RIGHT, fill = BOTH, expand = NO)
         
-        # Scrollbar
-        scrollbar = Scrollbar(self.right_frame)
-        scrollbar.pack(side=RIGHT, fill=Y)
-        right_frame = Frame(self.right_frame, yscrollcommand=scrollbar.set)
-        for i in range(1000):
-            right_frame.insert(END, str(i))
-            right_frame.pack(side=RIGHT, fill=BOTH)
-            scrollbar.config(command=right_frame.yview)
-    
     
         # Buttons are temporary until they get pics inside etc
         # Buttons in the top_frame
