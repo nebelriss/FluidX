@@ -43,13 +43,16 @@ class Main():
         # Buttons in the top_frame
         button_open = Button(top_frame, text = 'Open', height = 3, width = 7, command = self.fileOpen)
         button_import = Button(top_frame, text = 'Import', height = 3, width = 7, command = self.importer)
-        button_table = Button(top_frame, text = 'Table', height = 3, width = 7, command = self.table)
+        button_table = Button(top_frame, text = 'Table', height = 3, width = 7, command = self.table, state = DISABLED)
         button_exit = Button(top_frame, text = 'Exit', height = 3, width = 7, command = quit)
         # Button packers
         button_open.pack(side = LEFT, anchor = W, pady = 2) 
         button_import.pack(side = LEFT, padx = 5, pady = 2 ) 
         button_table.pack(side = LEFT, pady = 2)
         button_exit.pack(side = RIGHT, pady = 2, padx = 5)
+        
+        title = Label(self.right_frame, text = "left click to print to plot\n right click to open metadata")
+        title.pack(side = TOP, anchor = W)
         
         self.plot()
         
@@ -82,7 +85,6 @@ class Main():
         ''' 
         canvas_data = []
         canvas_data.append([])
-        print canvas_data
 ###################################################################################################
 
 

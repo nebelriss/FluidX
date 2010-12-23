@@ -3,6 +3,7 @@
 
 from Tkinter import *
 from metabox import *
+import threading
 
 
 
@@ -25,11 +26,7 @@ class Listboxes():
         self.idx = idx
         self.plot = plot
         
-        
-        self.meta_frame = Frame(self.right_frame)
-        self.meta_frame.pack(side = TOP, padx = 20, pady = 10)
-        self.metabox = Metabox(self.meta_frame, self.meta_height)
-        
+       
         spacer = Frame(self.right_frame, bg = "white", height = 5)
         spacer.pack(side = TOP, expand = NO, fill = BOTH)
         
@@ -41,14 +38,12 @@ class Listboxes():
         # get meta
         meta_tmp = self.meta[self.idx]
         self.canvas_data = self.values[self.idx]
-        date_meta = str(meta_tmp['date'])
         motor_meta = str(meta_tmp['exp_name'])
         media_meta = str(meta_tmp['additional_info'])
         self.i += 1
         
         #convert date
-        date_txt = date_meta[6:8] + "." + date_meta[4:6] + "." + date_meta[:4] + " " + date_meta[8:10] + ":" + date_meta[10:]
-        motor_txt = "Motor: " + motor_meta
+        motor_txt = "Pumpe: " + motor_meta
         media_txt = "Media: " + media_meta
         # create Labels
         motor_label = Label(self.values_frame, text = motor_txt)
@@ -57,14 +52,13 @@ class Listboxes():
         media_label = Label(self.values_frame, text = media_txt)
         media_label.pack(side = TOP, anchor = W)
         
-        date_label = Label(self.values_frame, text = date_txt)
-        date_label.pack(side = TOP, anchor = W)
         
         # create Listbox
 
         self.values_listbox = Listbox(self.values_frame, selectmode = MULTIPLE, height = self.values_height, exportselection=0)
         self.values_listbox.pack(side = TOP, fill = BOTH, expand = YES)
         self.values_listbox.bind("<<ListboxSelect>>", self.sel_values)
+        self.values_listbox.bind("<Button-3>", self.metaview)
         
         self.canvas_data = []
         values_id = 0
@@ -76,7 +70,7 @@ class Listboxes():
             desc = 'v' + str(i) + '_desc'
             box_desc = meta_tmp[desc]
             self.values_listbox.insert(END, str(id) + ". " + box_desc + ' - Sensor')
-            id += 1            
+            id += 1
             self.values_listbox.insert(END, str(id) + ". " + box_desc + ' - Waage')
             id += 1
             self.values_height += 2
@@ -94,12 +88,12 @@ class Listboxes():
             sel_values = self.values_listbox.get(self.values_listbox.curselection()[i])
             sel_idx.append(sel_values)
   
-        self.plot.createline(self.meta, self.canvas_data, self.idx, sel_idx, metabox)
+        self.plot.createline(self.meta, self.canvas_data, self.idx, sel_idx)
         
-    def metabox(self, meta):
+    def metaview(self, event):
         '''
         
         '''
-        self.meta_listbox.delete(0, END)
-        self.meta_listbox.insert(END, meta)
+        m = Metabox(self.meta, self.idx)
+        m.run()
         

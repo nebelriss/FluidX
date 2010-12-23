@@ -2,45 +2,48 @@
 # encoding: utf-8
 
 from Tkinter import *
+import threading 
 
-class Metabox(object):
+class Metabox(threading.Thread):
     '''
     classdocs
     '''
 
 
-    def __init__(self, frame, meta_height):
+    def __init__(self, meta, idx):
         '''
         Constructor
         '''
-        
-        # new frame for the metabox
+        threading.Thread.__init__(self)
+        root = Tk()
+        root.title("Meta Data")
+        frame = Frame(root, height = 500)
+        frame.pack(side = TOP, expand = YES, fill = BOTH)
 
+        name = Label(frame, text = 'Gruppenmitglieder:')
+        name.pack(side = TOP, anchor = W)
+        name = Label(frame, text = meta[idx]['actor_name'] + "\n")
+        name.pack(side = TOP, anchor = W)
         
-        title = Label(frame, text = "Your Selection")
-        title.pack(side = TOP, anchor = W)
+        name = Label(frame, text = 'Pumpennummer:')
+        name.pack(side = TOP, anchor = W)
+        name = Label(frame, text = meta[idx]['exp_name'] + "\n")
+        name.pack(side = TOP, anchor = W)
         
-        desc = Label(frame, text = "click to sel color")
-        desc.pack(side = TOP, anchor = W)
+        name = Label(frame, text = 'Medium:')
+        name.pack(side = TOP, anchor = W)
+        name = Label(frame, text = meta[idx]['additional_info'] + "\n")
+        name.pack(side = TOP, anchor = W)       
         
-        self.meta_listbox = Listbox(frame, selectmode = SINGLE, height = meta_height)
-        self.meta_listbox.pack(side = TOP, anchor = NW)
+        name = Label(frame, text = 'Zeit:')
+        name.pack(side = TOP, anchor = W)
+        date_meta = meta[idx]['date']
+        date_txt = date_meta[6:8] + "." + date_meta[4:6] + "." + date_meta[:4] + " " + date_meta[8:10] + ":" + date_meta[10:]
+        name = Label(frame, text = date_txt + "\n")
+        name.pack(side = TOP, anchor = W)  
+
+    
+    def run(self):
+        mainloop()
         
-    def insert(self, meta_data):
-        '''
-        
-        '''
-        # delete all entrys
-        self.meta_listbox.delete(0, END)
-        
-        # write new entrys to the list
-        for item in meta_data:
-            print item
-            self.meta_listbox.insert(item)
-        
-        
-    def getcolor(self):
-        '''
-        
-        '''
-        
+                

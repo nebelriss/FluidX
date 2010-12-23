@@ -5,6 +5,7 @@ Created on 14 Dec 2010
 '''
 from Tkinter import *
 from Canvas import *
+import random
 
 class Plot(object):
     
@@ -20,6 +21,8 @@ class Plot(object):
         self.meta_frame.pack(sid = TOP)        
         self.canvas = Canvas(self.frame, bg = "white")
         self.canvas.pack(expand = YES, fill = BOTH)
+        
+        self.colors = {1: 'red', 2: 'blue', 3: 'yellow', 4: 'cyan', 5: 'green', 6: 'black', 7: 'orange', 8: 'magenta'}
         
 
 
@@ -46,11 +49,6 @@ class Plot(object):
       
         maximumx = ((self.xMax) + 2) / self.xInterval
         maximumy = ((self.yMax) + 1) / self.yInterval
-
-        
-        print "dist................................"
-        print self.dist_x
-        print self.dist_y
         
         for i in range(int(maximumx)):
             x = 70 + (i * self.dist_x * self.xInterval)
@@ -65,14 +63,13 @@ class Plot(object):
         # divisor=Variable  Rest=constant
         #(-i(2)+(2*20)) 2=Variable  20= range(21)-1
             
-    def createline (self, meta, values, idx, sel_idx, metabox):
+    def createline (self, meta, values, idx, sel_idx):
         '''
         Fist the given values are written in a list with the index number of the listbox and the selected items.
         '''
         self.xInterval = 2
         self.yInterval = 0.2
-        self.metabox = metabox
-        metabox_data = []
+
         
         print sel_idx
         self.canvas.delete("plot")
@@ -98,7 +95,8 @@ class Plot(object):
             values = row[1]
             for item in row[2]:
                 print item
-                metabox_data.append(item)
+                r = random.randrange(1,len(self.colors) + 1, 1)
+                color = self.colors[r]
                 for row in values:
                     endValue = row
 
@@ -135,9 +133,10 @@ class Plot(object):
                         
                         xPoint = (xValue * self.dist_x) + 70
                         yPoint = self.sh - ((yValue * self.dist_y) + 150)
+                        
 
-                        self.canvas.create_line(xZero, yZero, xPoint, yPoint, fill='red', width = 3, tag = "plot")
-                        self.canvas.create_oval(xPoint - 4, yPoint - 4, xPoint + 4, yPoint + 4, fill = 'red', outline = 'red', tag = "plot")
+                        self.canvas.create_line(xZero, yZero, xPoint, yPoint, fill=color, width = 3, tag = "plot")
+                        self.canvas.create_oval(xPoint - 4, yPoint - 4, xPoint + 4, yPoint + 4, fill = color, outline = color, tag = "plot")
 
                         xZero = xPoint
                         yZero = yPoint
@@ -156,6 +155,11 @@ class Plot(object):
         self.value_list.append([idx])
         self.value_list[idx].append(None)
         self.value_list[idx].append(None)
+        
+
+
+        
+        
         
     def getMax(self, value_list):
         '''
