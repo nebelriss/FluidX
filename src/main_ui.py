@@ -24,6 +24,7 @@ class Main():
         self.databasename = StringVar()
         self.data = Data()
         self.idx = 0
+        self.color = []
 
         
         # Frames
@@ -115,8 +116,9 @@ class Main():
         '''
 
         '''
+
         values, meta = self.data.getdata()
-        Listboxes(self.right_frame, meta, values, self.idx, self.plot)
+        Listboxes(self.right_frame, meta, values, self.idx, self.plot, self.color)
         self.idx += 1
 ###################################################################################################
 
