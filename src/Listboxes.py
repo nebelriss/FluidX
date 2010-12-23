@@ -56,19 +56,23 @@ class Listboxes():
         media_label.pack(side = TOP, anchor = W)
         
         
+        self.canvas_data = []
+        values = self.values[self.idx]
+        self.sel_colors.append([])
+        for i in range(8):
+            r = random.randrange(1,len(self.colors), 1)
+            color = self.colors[r]
+            self.sel_colors[self.idx].append(color)
+        
         # create istbox
-
         self.values_listbox = Listbox(self.values_frame, selectmode = MULTIPLE, height = self.values_height, exportselection=0)
         self.values_listbox.pack(side = TOP, fill = BOTH, expand = YES)
         self.values_listbox.bind("<<ListboxSelect>>", self.sel_values)
         self.values_listbox.bind("<Button-3>", self.metaview)
         
-        self.canvas_data = []
-        values = self.values[self.idx]
-        
         #inserting listboxes
         id = 1
-        self.sel_colors.append([])
+
         for i in range(1,4):
             desc = 'v' + str(i) + '_desc'
             box_desc = meta_tmp[desc]
@@ -80,16 +84,16 @@ class Listboxes():
             self.values_height += 2
             self.values_listbox.configure(height = self.values_height)
             
-        for i in range(8):
-            r = random.randrange(1,len(self.colors), 1)
-            color = self.colors[r]
-            self.sel_colors[self.idx].append(color)
+
 
 
         # wirte infos to List
         data = values
         self.canvas_data.append(data)
         self.plot.createlist(self.idx) 
+        
+
+        
                 
     def sel_values(self, event):
         sel_idx = []
