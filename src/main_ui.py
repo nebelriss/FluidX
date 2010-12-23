@@ -153,6 +153,6 @@ class Main():
 
 
 root = Tk()
-root.title("FluidX - 0.1")
+root.title("FluidX - 0.2")
 main = Main(root)
 root.mainloop()

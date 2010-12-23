@@ -42,7 +42,7 @@ class Plot(object):
         
         #labeling for axis
       
-        maximumx = ((self.xMax) + 1) / self.xInterval
+        maximumx = ((self.xMax) + 2) / self.xInterval
         maximumy = ((self.yMax) + 1) / self.yInterval
 
         
@@ -125,14 +125,12 @@ class Plot(object):
                         else:
                             print "none haha"
 
-                        #xValue = xValue / self.xInterval/ 2
-                        #yValue = yValue / self.yInterval / 20
-                        xPoint = ((xValue) * self.dist_x) + 70
+                        xPoint = (xValue * self.dist_x) + 70
                         yPoint = self.sh - ((yValue * self.dist_y) + 150)
 
 
                         self.canvas.create_line(xZero, yZero, xPoint, yPoint, fill='red', width = 3, tag = "plot")
-                        self.canvas.create_oval(xPoint - 4, yPoint - 4, xPoint + 4, yPoint + 4, fill = 'red', tag = "plot")
+                        self.canvas.create_oval(xPoint - 4, yPoint - 4, xPoint + 4, yPoint + 4, fill = 'red', outline = 'red', tag = "plot")
 
                         xZero = xPoint
                         yZero = yPoint
