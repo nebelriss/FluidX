@@ -78,7 +78,7 @@ class Main():
         self.plot = Plot(root, self.plot_frame, self.sw, self.sh)
 ###################################################################################################
 
-#updateplot##############################################################################################      
+#update plot##############################################################################################      
     def updateplot(self, meta, values):
         '''
         
@@ -105,7 +105,7 @@ class Main():
         '''
         opening the database and get infos out of the sql
         '''
-        # store datas to lists
+        # store data to lists
         self.data.savedata(databasepath)
         self.getdata()
 ###################################################################################################        

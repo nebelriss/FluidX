@@ -10,7 +10,7 @@ import random
 
 class Listboxes():
     '''
-    classdocs
+    class documents
     '''
 
 
@@ -45,7 +45,7 @@ class Listboxes():
         media_meta = str(meta_tmp['additional_info'])
         self.i += 1
         
-        #convert date
+        #convert data
         motor_txt = "Pumpe: " + motor_meta
         media_txt = "Media: " + media_meta
         # create Labels
@@ -64,13 +64,13 @@ class Listboxes():
             color = self.colors[r]
             self.sel_colors[self.idx].append(color)
         
-        # create istbox
+        # create list box
         self.values_listbox = Listbox(self.values_frame, selectmode = MULTIPLE, height = self.values_height, exportselection=0)
         self.values_listbox.pack(side = TOP, fill = BOTH, expand = YES)
         self.values_listbox.bind("<<ListboxSelect>>", self.sel_values)
         self.values_listbox.bind("<Button-3>", self.metaview)
         
-        #inserting listboxes
+        #inserting list boxes
         id = 1
 
         for i in range(1,4):
@@ -87,7 +87,7 @@ class Listboxes():
 
 
 
-        # wirte infos to List
+        # write informations to List
         data = values
         self.canvas_data.append(data)
         self.plot.createlist(self.idx) 

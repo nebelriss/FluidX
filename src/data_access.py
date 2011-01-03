@@ -46,7 +46,7 @@ class Experiment:
         initiate a new experiment
         
         :Parameters:
-            p      is the filesystem path where the experiment will be stored
+            p      is the file system path where the experiment will be stored
             vn     is the number of parameters (y-values) in the data-set
 
         (p defaults to ":memory:" if not specified: 
@@ -58,7 +58,7 @@ class Experiment:
         self.conn = sqlite3.connect(p)
         self.c = self.conn.cursor()
 
-        ##TODO Abfangen, wenn die Tabelle bereits im Filesystem besteht
+        ##catch TODO (TODO Abfangen), When the table already exist in the file System (wenn die Tabelle bereits im Filesystem besteht)
         
         self.c.execute("SELECT name FROM sqlite_master WHERE type='table'")
         tables = [n[0] for n in self.c.fetchall()]
@@ -70,7 +70,7 @@ class Experiment:
         if type(vn) != int:
             raise Exception("Input Error: Second parameter must be an integer")
 
-        # TODO: dokumentieren
+        # TODO: to document (dokumentieren)
         if 'values' not in tables and 'metadata' not in tables:
             self.create_experiment_table(p)
             sql = "CREATE TABLE 'metadata' (name TEXT UNIQUE, value TEXT)"

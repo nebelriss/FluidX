@@ -37,7 +37,7 @@ class Csvimport(object):
         csvfile.seek(0)
         
                    
-        # wirte the csv file into reader
+        # write the csv file into reader
         self.reader = csv.reader(csvfile, dialect)
    
         
@@ -49,7 +49,7 @@ class Csvimport(object):
         this file is used by every group to get the same structure in the db file
          
         If self.value is "0" then a new database file will be created
-        if its "1" the datas will be written in an existing database.
+        if its "1" the data will be written in an existing database.
         '''
         # open database connection with the parameters database path and number of v values
         db = Experiment(str(self.dbpath), self.vn)

@@ -127,7 +127,7 @@ class Plot(object):
                         else:
                             pass
                         
-                        #send item to metabox
+                        #send item to meta box
                         print colors
                         color = colors[idx][int(item[0]) - 1]
                         xPoint = (xValue * self.dist_x) + 70
