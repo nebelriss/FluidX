@@ -120,9 +120,11 @@ class Plot(object):
 
                 for row in values:
                     endValue = row
-
+                    
+                    # setting zeroTotal to zero
                     xZero = xZeroTotal
                     yZero = yZeroTotal
+                    # setting point to zero for the reason the line begins at the zero point
                     xPoint = xZero
                     yPoint = yZero                    
 
@@ -150,15 +152,18 @@ class Plot(object):
                         else:
                             pass
                         
-
+                        # setting color for the line
                         color = colors[idx][int(item[0]) - 1]
+                        
+                        # calculating x,y points on the screen
                         xPoint = (xValue * self.dist_x) + 70
                         yPoint = self.sh - ((yValue * self.dist_y) + 150)
                         
-
+                        # drawing line
                         self.canvas.create_line(xZero, yZero, xPoint, yPoint, fill=color, width = 3, tag = "plot")
                         self.canvas.create_oval(xPoint - 4, yPoint - 4, xPoint + 4, yPoint + 4, fill = color, outline = color, tag = "plot")
-
+                        
+                        # setting x,y points as new zero points
                         xZero = xPoint
                         yZero = yPoint
                     
@@ -169,7 +174,7 @@ class Plot(object):
         
     def createlist(self, idx):
         '''
-        
+        adding new index to the list with two empty fields
         '''
         self.value_list.append([idx])
         self.value_list[idx].append(None)
