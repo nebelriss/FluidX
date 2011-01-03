@@ -1,1 +1,125 @@
-*Readme file for FluidX analysis software for FHNW LST09*
+FluidX v0.2
+--------------------------------
+
+FluidX is a sapplication which is written to visolise fluidic datas.
+
+--------------------------------
+
+Starting the application:
+
+Windows:
+	1. Download the latest 2.x version for Windows (don't use the 3.x, it wont work) from
+	   http://www.python.org/download/
+	   
+	2. Extract the zip-file in a directory of your choise.
+	   You can use any application that handles zip files, if you need one get it at
+	   http://www.7-zip.org/
+	   	    
+	3. Open the extracted folder
+		
+	4. Doubleclick on the fluidx.py	
+	
+	5. Import/open a sqlite3/csv file
+	
+Linux/OSX:
+	1. To use this application you need python 2.x. With 3.x the application will not work.
+	   You can check your version by opening a console and typing "python --version"
+
+	2. Extract the zip-file in a directory of your choise.
+	   	    
+	3. Open the extracted folder
+		
+	4. Doubleclick on the fluidx.py	
+	
+	5. Import/open a sqlite3/csv file
+
+--------------------------------
+
+Files included:
+
+[FluidX]
+|-- .git
+|-- .settings
+|-- csv_example
+|   `-- real_6.csv
+|-- db_example
+|   `-- real_6.tes
+`-- src
+|   |-- csvimport.py
+|   |-- data_access.py
+|   |-- data.py
+|   |-- fluidx.py
+|   |-- import_ui.py
+|   |-- listboxes.py
+|   |-- main_ui.py
+|   |-- metabox.py
+|   |-- plot.py
+|   |-- table.py
+`-- README
+
+--------------------------------
+
+Folder description:
+
+.git:
+	local git with two branches
+	
+.settings:
+	???
+	
+db_example:
+	example db-files for testing
+	
+csv_example:
+	example csv-files for testing
+	
+src:
+	source folder with the python files
+
+--------------------------------
+
+Files description:
+
+fluidx.py
+	Main file. If you want to run the application he is your man.
+
+csvimport.py
+	To write the csv data in to a sqlite3 database.
+	
+data_access.py
+	File to access the sqlite3 database. It's used by all groups to create the same tables in the db-file.
+	
+data.py
+
+import_ui.py
+
+listboxes.py
+
+main_ui.py
+
+metabox.py
+
+plot.py
+
+table.py
+
+--------------------------------
+
+written by:
+	- Michel Heiniger
+	- Sandra Lang
+	
+written for:
+	- Project of the FHNW
+	
+adviser:
+	- Markus Degen
+	- Dominique Brodbeck
+	
+--------------------------------
+
+
+
+
+
+
