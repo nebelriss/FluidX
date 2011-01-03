@@ -11,6 +11,12 @@ class Csvimport(object):
     This class is to import a csv file in a given or new sqlite3 database.
     For the SQL connection and the table design is the data_access.py file used.
     More informations and docs see data_access.py file.
+    
+    Initial version by:
+        Michel Heiniger and Sandra Lang
+    
+    Latest source code can be found at:
+        https://github.com/nebelriss/FluidX
            
     The latest documentation about the csv file-format can be found at:
         https://github.com/nebelriss/FluidX/csv-file.pdf

@@ -13,6 +13,15 @@ from Listboxes import *
 
 
 class Main():
+    '''
+    The Main class is where everything starts.
+    
+    Initial version by:
+        Michel Heiniger and Sandra Lang
+    
+    Latest source code can be found at:
+        https://github.com/nebelriss/FluidX
+    '''
     
     def __init__(self, root):
         '''

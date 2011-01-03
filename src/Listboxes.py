@@ -7,16 +7,16 @@ import threading
 import random
 
 
-
 class Listboxes():
     '''
-    classdocs
+    This class creates a listbox with the different data you can chose.
     '''
 
 
     def __init__(self, frame, meta, values, idx, plot, color):
         '''
-        Constructor
+        The constructor creates the right frame with a listbox and a spacer. 
+        In the listbox you can chose the different values for the plotted lines
         '''
         self.right_frame = frame
         self.i = 0
@@ -26,28 +26,33 @@ class Listboxes():
         self.values = values
         self.idx = idx
         self.plot = plot
+        
+        # empty color list for the randomly chosen line colors
         self.sel_colors = color
+        
+        # dict with colors for the lines
         self.colors = {1: 'red', 2: 'blue', 3: 'yellow', 4: 'cyan', 5: 'moccasin', 6: 'black', 7: 'orange', 8: 'lightblue', 9: 'pink', 10: 'magenta', 11: 'green'}
         
-       
+        # space frame in the right panel
         spacer = Frame(self.right_frame, bg = "white", height = 5)
         spacer.pack(side = TOP, expand = NO, fill = BOTH)
         
-        
+        # frame for the values you can chose
         self.values_frame = Frame(self.right_frame)
         self.values_frame.pack(side =TOP, padx = 20, fill = BOTH, expand = NO, pady = 10)
         
         
-        # get meta
+        # get meta information about motorname and the medium
         meta_tmp = self.meta[self.idx]
         self.canvas_data = self.values[self.idx]
         motor_meta = str(meta_tmp['exp_name'])
         media_meta = str(meta_tmp['additional_info'])
         self.i += 1
         
-        #convert date
+        # convert meta
         motor_txt = "Pumpe: " + motor_meta
         media_txt = "Media: " + media_meta
+        
         # create Labels
         motor_label = Label(self.values_frame, text = motor_txt)
         motor_label.pack(side = TOP, anchor = W)
@@ -96,6 +101,9 @@ class Listboxes():
         
                 
     def sel_values(self, event):
+        '''
+        Writes the selection in the listbox in a list
+        '''
         sel_idx = []
         self.sel_values_list = []
         for i in range(len(self.values_listbox.curselection())):

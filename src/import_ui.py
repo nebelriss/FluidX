@@ -16,6 +16,12 @@ class Import(object):
     This Class is for importing CSV files with a specific format that is given out to the creators.
     First the file will be read with csvreader and stored in a sqlite3 database.
     
+    Initial version by:
+        Michel Heiniger and Sandra Lang
+    
+    Latest source code can be found at:
+        https://github.com/nebelriss/FluidX
+    
     The latest documentation about the csv file-format can be found at:
         https://github.com/nebelriss/FluidX/csv-file.pdf
     '''
