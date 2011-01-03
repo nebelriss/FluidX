@@ -8,91 +8,114 @@ from Canvas import *
 import random
 
 class Plot(object):
+    '''
+    A canvas will be created where the selected values will be plotted as lines, with the best fitting scale.
+    
+    Initial version by:
+        Michel Heiniger and Sandra Lang
+    
+    Latest source code can be found at:
+        https://github.com/nebelriss/FluidX
+    '''
     
     def __init__(self, master, frame, sw, sh):
         '''
-        
+        Constructor for the plot area.
         '''
+        # inits
         self.sw = sw
         self.sh = sh
-        self.value_list = []
         self.frame = frame
-        self.meta_frame = Frame(self.frame)
-        self.meta_frame.pack(sid = TOP)        
+        
+        # empty value list
+        self.value_list = []
+        
+        # canvas area where the value lines and the coordinate system
         self.canvas = Canvas(self.frame, bg = "white")
         self.canvas.pack(expand = YES, fill = BOTH)
         
         
-
-
-        #self.createGrid(0,0)
         
-    def createGrid(self):
+    def createCoordSystem(self):
         '''
+        This creates the coordinate system with a given max value for x,y axis.
+        '''
+        # Interval for the numbers 
+        self.xInterval = 2
+        self.yInterval = 0.2
         
-        '''
-        # delete all text
+        
+        # delete all canvas with the tag "text"
         self.canvas.delete("text")                
         
-        #Axis
+        
+        # draw axis lines
         self.canvas.create_line(self.sw-315, self.sh-150, 50, self.sh-150, fill = "black", width = 1)
         self.canvas.create_line(70, self.sh-130, 70, 70, fill = "black", width = 1)
         
-        #Text for Axis
+        
+        # text for Axis
         y = 'Y-Axis'
         x = 'X-Axis'
+        # write the text at the right position
         self.canvas.create_text(70,40, text= y, tag = "text")
         self.canvas.create_text(self.sw-315,self.sh-120, text= x, tag = "text")
         
-        #labels for axis
-      
+        
+        # numbers for x and y axis
         maximumx = ((self.xMax) + 2) / self.xInterval
         maximumy = ((self.yMax) + 1) / self.yInterval
         
+        
+        # loop to write the numbers under the axisline and draw the seperationlines for the x-axis
         for i in range(int(maximumx)):
             x = 70 + (i * self.dist_x * self.xInterval)
             self.canvas.create_line(x,self.sh-150,x,self.sh-155, width = 2)
             self.canvas.create_text(x,self.sh-140, text='%d'% (i * self.xInterval), anchor=N, tag = "text")   
+        
+        # loop to write the numbers under the axisline and draw the seperationlines for the x-axis      
         for i in range (int(maximumy)):
             y = self.sh-150-(i * self.dist_y * self.yInterval)   
             self.canvas.create_line(70,y,75,y, width = 2)
             self.canvas.create_text(45,y, text=str((i * self.yInterval)), anchor=W, tag = "text")
         
-        # Two weeks work for nothing
-          
-        # y=(5*divisor)-(200 +(1,5*(5*divisor))) divisor=(3.3)
-        # divisor=Variable  Rest=constant
-        #(-i(2)+(2*20)) 2=Variable  20= range(21)-1
+        
             
     def createline (self, meta, values, idx, sel_idx, colors):
         '''
         Fist the given values are written in a list with the index number of the listbox and the selected items.
         '''
-        self.xInterval = 2
-        self.yInterval = 0.2
-
-        
+        # remove all lines with the tag "plot"
         self.canvas.delete("plot")
+        
+        
+        # overwrite values with the given index with none
         try:
             self.value_list[idx][1] = None
-            print self.value_list
         except IndexError:
-            print "Index Error"
+            print "Index Error - List out of range"
   
 
+        # write values in the list
         self.value_list[idx][1] = values
         self.value_list[idx][2] = sel_idx
-        print self.value_list
+        
+        
+        # The zeropoint in the coordinate system
         xZeroTotal = 70
         yZeroTotal = self.sh-150
-
+        
+        # get the max value
         self.getMax(self.value_list)
 
-        
-        
-        # draw lines  
+           
+        # draw lines with the selected values
+        # read every row of the value_list
         for row in self.value_list:
+            # write row to a diffrent variable because I had to build a for loop like this (for row in row:)
             values = row[1]
+            
+            # get the value with the index 2 in each row
             for item in row[2]:
 
                 for row in values:
@@ -127,8 +150,7 @@ class Plot(object):
                         else:
                             pass
                         
-                        #send item to metabox
-                        print colors
+
                         color = colors[idx][int(item[0]) - 1]
                         xPoint = (xValue * self.dist_x) + 70
                         yPoint = self.sh - ((yValue * self.dist_y) + 150)
@@ -162,6 +184,7 @@ class Plot(object):
         '''
         This method is trying to find the max value for the scale grid.
         '''
+        # setting max values to zero to find out the highest value
         self.xMax = 0
         self.yMax = 0
 
@@ -186,4 +209,4 @@ class Plot(object):
             
         self.dist_x = (self.sw - 400) / self.xMax
         self.dist_y = (self.sh - 500) / self.yMax       
-        self.createGrid()     
+        self.createCoordSystem()     
