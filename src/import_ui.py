@@ -32,14 +32,14 @@ class Import(object):
         self.child.resizable(width=FALSE, height=FALSE)
         
         # inits
-        self.value = IntVar()
+        self.radio_db = IntVar()
         self.filepath = StringVar()
         self.databasename = StringVar()
         
-        # Label values
+        # Label and text values
         csv_title = "CSV - Import"
         dir_txt = "Folder: "
-        given_path = "~/file.csv"
+        default_path = "~file.csv"
         newdb_txt = "Create new Database"
         exdb_txt = "Create new Database"
         browse_txt = "Browse"
@@ -54,7 +54,7 @@ class Import(object):
 
         # Title showed inside the window
         csvLabel = Label(self.frame, text = csv_title)
-        self.csvLabel.grid(row = 0, column = 0, columnspan = 2, sticky = (N, W), pady = 10, padx = 5)
+        csvLabel.grid(row = 0, column = 0, columnspan = 2, sticky = (N, W), pady = 10, padx = 5)
         
         # changing font and raising size of the title       
         myfont = Font(family = 'Arial', size = 14, weight = BOLD)
@@ -69,26 +69,34 @@ class Import(object):
         self.emptylabel.grid(row = 2, column = 0)
        
         
-        #Entry
+        # Entry where the user can write the path inside or the chosen path will be displayes
+        # The default path is a linuxtype-path "~file.csv"
         self.entryPath = Entry(self.frame, width = 40, textvariable = self.filepath, bg = "grey")
-        self.entryPath.insert(END, given_path)
-        # Radiobuttons, new Database or existing database
-        self.newDB = Radiobutton(self.frame, text = newdb_txt, variable = self.value, value = 0)
-        self.existDB = Radiobutton(self.frame, text = exdb_txt, variable = self.value, value = 1)
-        # Buttons to start import and quit the import window
-        self.buttonBrowse = Button(self.frame, text = browse_txt, command = self.csvopenfilename)
-        self.buttonOK = Button(self.frame, text = ok_txt, width = 5, command = self.cvstosql)
-        self.buttonCancel = Button(self.frame, text = cancel_txt, command = self.child.destroy)
+        self.entryPath.insert(END, default_path)
+        self.entryPath.grid(row = 1, column = 1, columnspan = 1, sticky = (N, W), padx = 5, pady = 2.5)        
         
-        # grit for widget, position etc.
-
-
-        self.entryPath.grid(row = 1, column = 1, columnspan = 1, sticky = (N, W), padx = 5, pady = 2.5)
-        self.buttonBrowse.grid(row = 1, column = 2, sticky = W, padx = 5)
+        
+        # Radiobuttons where the user can chose if he wants to create a new Database or use an existing one
+        # Default is neDB
+        self.newDB = Radiobutton(self.frame, text = newdb_txt, variable = self.radio_db, value = 0)
         self.newDB.grid(row = 3, column = 1, sticky = W, columnspan = 2)
-        self.existDB.grid(row = 4, column = 1, sticky = W, columnspan = 2)
+               
+        self.existDB = Radiobutton(self.frame, text = exdb_txt, variable = self.radio_db, value = 1)
+        self.existDB.grid(row = 4, column = 1, sticky = W, columnspan = 2)        
+        
+        
+        
+        # Buttons to start import and quit the import
+        self.buttonBrowse = Button(self.frame, text = browse_txt, command = self.csvopenfilename)
+        self.buttonBrowse.grid(row = 1, column = 2, sticky = W, padx = 5)
+        
+        self.buttonOK = Button(self.frame, text = ok_txt, width = 5, command = self.cvstosql)
         self.buttonOK.grid(row = 6, column = 2, sticky = (S, E), padx = 5, pady = 5)
-        self.buttonCancel.grid(row = 6, column = 1, sticky = (S, E), pady = 5)
+                
+        self.buttonCancel = Button(self.frame, text = cancel_txt, command = self.child.destroy)
+        self.buttonCancel.grid(row = 6, column = 1, sticky = (S, E), pady = 5)        
+
+
         
     def csvopenfilename(self):
         '''
@@ -103,6 +111,8 @@ class Import(object):
         filepath = askopenfilename(**self.file_opt)
         self.filepath.set(filepath)
         
+        
+        
     def sqlnewfilename(self):
         '''
         Opens a dialog where the user can chose the location of his file to save it. But the file will not be saved directly it 
@@ -115,6 +125,8 @@ class Import(object):
         options['title'] = 'Save your Database file'
         databasename = asksaveasfilename(**self.file_save)
         self.databasename.set(databasename)
+        
+        
         
     def sqlopenfilename(self):
         '''
@@ -129,12 +141,14 @@ class Import(object):
         self.databasename.set(databasename)
         
         
+        
     def cvstosql(self):
         '''
         sends information about filepath, filename, and Database name
         '''
-        # opens a filedialog 
-        if self.value.get() == 0:
+        # if the user has chosen newdatabase a dialog opens where he can define the path and his new filename
+        # if not a dialog opens where the user can chose an existing .sqlite3 file
+        if self.radio_db.get() == 0:
             self.sqlnewfilename()
         else:
             self.sqlopenfilename()
@@ -152,7 +166,7 @@ class Import(object):
             databasename = self.databasename.get()
             value = self.value.get()
             
-            # sending string values to read csv and write to sql
+            # sending string values to write in sqlite3 file
             check = Csvimport(filepath, databasename)
             check.cvsread()
             ok = check.tosql()
