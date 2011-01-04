@@ -136,7 +136,7 @@ class Import(object):
         
     def sqlopenfilename(self):
         '''
-        opens a dialoge where the user can chose the location of an existing database, the path is saved then in databasename.
+        opens a dialogue where the user can chose the location of an existing database, the path is saved then in database name.
         '''
         self.file_open = options = {}
         options['filetypes'] = [('sqlite3 files', '.sqlite3')]
@@ -150,8 +150,9 @@ class Import(object):
         
     def cvstosql(self):
         '''
-        sends information about filepath, filename, and Database name
+        sends information about file path, filename, and database name
         '''
+
         # if the user has chosen newdatabase a dialog opens where he can define the path and his new filename
         # if not a dialog opens where the user can chose an existing .sqlite3 file
         if self.radio_db.get() == 0:
@@ -160,10 +161,10 @@ class Import(object):
             self.sqlopenfilename()
         
         
-        # check if databasename is empty
+        # check if database name is empty
         if self.databasename.get() == "":
             pass
-        #if not send values to Csvimport class
+        #if not send values to Csv import class
         else:
             showinfo("Reading Database", "Reading Database")
             
@@ -179,11 +180,11 @@ class Import(object):
             
             
 
-        #if Csvimport return True it mean that the import of the csv file to the sql was successful
+        #if the Csv import return True it means, that the import of the csv file to the sql was successful
         if ok == True:
             self.child.destroy()
             return databasename
-        #if the import was iterrupted an error message will be showed
+        #if the import was interrupt, an error message will be showed
         else:
             showwarning("Import Error", "Import the Database\n wasn't successful!")
 

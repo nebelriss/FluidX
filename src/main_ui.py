@@ -102,7 +102,7 @@ class Main():
         '''
         Opens the database file and get the meta and values from it.
         '''
-        # get data from the sqlite3 file
+        # store data to lists
         self.data.savedata(databasepath)
         
         # get the values and the meta in a list
@@ -143,7 +143,8 @@ class Main():
         dbpath = askopenfilename(**self.file_open)
         self.databasename.set(dbpath)
         databasepath = self.databasename.get()
-        self.savedata(databasepath)
+        self.savedata(str(databasepath))
+        print databasepath
 
 
         

@@ -92,9 +92,11 @@ data_access.py
 data.py
 
 import_ui.py
-
+	creates the GUI for the importer dialog
+	
 listboxes.py
-
+	creates a listox 
+	
 main_ui.py
 
 metabox.py

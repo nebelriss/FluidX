@@ -1,4 +1,4 @@
-#Thu Dec 23 10:10:38 CET 2010
+#Tue Jan 04 09:26:39 CET 2011
 =\=\=\=\=\=\=
 <<<<<<<=HEAD
 >>>>>>>=refs/remotes/origin/master
@@ -7,7 +7,9 @@ encoding//src/Listboxes.py=utf-8
 encoding//src/csvimport.py=utf-8
 encoding//src/data.py=utf-8
 encoding//src/data_access.py=utf-8
+encoding//src/fluidx.py=utf-8
 encoding//src/import_ui.py=utf-8
 encoding//src/main_ui.py=utf-8
 encoding//src/metabox.py=utf-8
+encoding//src/plot.py=utf-8
 encoding//src/table.py=utf-8

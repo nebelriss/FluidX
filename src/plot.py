@@ -1,8 +1,6 @@
-'''
-Created on 14 Dec 2010
+#!/usr/bin/python
+# encoding: utf-8
 
-@author: nebelriss
-'''
 from Tkinter import *
 from Canvas import *
 import random
@@ -202,7 +200,7 @@ class Plot(object):
                 for row in endValue:                                                  
                     for i in range(1,3):
         
-                        # check for max value                
+                        # check for max value
                         if self.xMax < row[i]:
                             self.xMax = row[i]
 
