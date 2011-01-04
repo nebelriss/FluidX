@@ -54,7 +54,7 @@ Files included:
 |   |-- main_ui.py
 |   |-- metabox.py
 |   |-- plot.py
-|   |-- table.py
+|   `-- table.py
 `-- README
 
 --------------------------------
