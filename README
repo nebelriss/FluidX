@@ -90,21 +90,25 @@ data_access.py
 	File to access the sqlite3 database. It's used by all groups to create the same tables in the db-file.
 	
 data.py
+	Manages the sqlite3 files.
 
 import_ui.py
 	creates the GUI for the importer dialog
 	
 listboxes.py
-	creates a listox 
+	creates a listox with the different data you can select.
 	
 main_ui.py
-
+	creates the main GUI for the application.
+	
 metabox.py
+	Opens a new window with the metadata related to a selected value.
 
 plot.py
+	Draws the canvas lines with the related data which the user has selected.
 
 table.py
-
+	Opens a new windows with the selected values in table format.
 --------------------------------
 
 written by:
