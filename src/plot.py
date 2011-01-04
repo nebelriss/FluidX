@@ -20,7 +20,7 @@ class Plot(object):
         '''
         Constructor for the plot area.
         '''
-        # inits
+        # initalisation of 
         self.sw = sw
         self.sh = sh
         self.frame = frame
@@ -99,7 +99,7 @@ class Plot(object):
         self.value_list[idx][2] = sel_idx
         
         
-        # The zeropoint in the coordinate system
+        # The zero-point in the coordinate system
         xZeroTotal = 70
         yZeroTotal = self.sh-150
         
