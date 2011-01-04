@@ -34,8 +34,15 @@ class Plot(object):
         self.canvas = Canvas(self.frame, bg = "white")
         self.canvas.pack(expand = YES, fill = BOTH)
         
-        self.win_osx_factor = 1.5
-        print os.name
+        #if the used os is a windows or a mac, they need a factor 1.5 for the y-axis
+        if os.name == "nt":
+            self.win_osx_factor = 1.5
+        elif os.name == "mac":
+            self.win_osx_factor = 1.5
+            
+        # if its a linux machine factor is 1           
+        else:
+            self.win_osx_factor = 1
         
         
         
