@@ -144,7 +144,6 @@ class Main():
         self.databasename.set(dbpath)
         databasepath = self.databasename.get()
         self.savedata(str(databasepath))
-        print databasepath
 
 
         

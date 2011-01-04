@@ -171,7 +171,7 @@ class Import(object):
             #  converting values to string
             filepath = self.filepath.get()
             databasename = self.databasename.get()
-            value = self.value.get()
+            value = self.radio_db.get()
             
             # sending string values to write in sqlite3 file
             check = Csvimport(filepath, databasename)
