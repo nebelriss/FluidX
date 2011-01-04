@@ -74,7 +74,7 @@ class Plot(object):
         
         # loop to write the numbers under the axisline and draw the seperationlines for the x-axis      
         for i in range (int(maximumy)):
-            y = self.sh-150-(i * self.dist_y * self.yInterval) * 2  
+            y = self.sh-150-(i * self.dist_y * self.yInterval) * 1.5  
             self.canvas.create_line(70,y,75,y, width = 2)
             self.canvas.create_text(45,y, text=str((i * self.yInterval)), anchor=W, tag = "text")
         
@@ -157,7 +157,7 @@ class Plot(object):
                         
                         # calculating x,y points on the screen
                         xPoint = (xValue * self.dist_x) + 70
-                        yPoint = self.sh - ((yValue * self.dist_y) + 150)
+                        yPoint = self.sh - ((yValue * self.dist_y) + 150) * 1.5
                         
                         tag = str(idx) + str(item[0])
                         print tag
