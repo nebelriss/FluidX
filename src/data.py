@@ -24,7 +24,7 @@ class Data():
  
     def savedata(self, dbpath):
         '''
-        
+        Load values from database
         '''
         # open sqlite3 connection
         db = Experiment(dbpath)
