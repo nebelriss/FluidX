@@ -74,7 +74,6 @@ class Listboxes():
         self.values_listbox = Listbox(self.values_frame, selectmode = MULTIPLE, height = self.values_height, exportselection=0)
         self.values_listbox.pack(side = TOP, fill = BOTH, expand = YES)
         self.values_listbox.bind("<<ListboxSelect>>", self.sel_values)
-        self.values_listbox.bind("<Button-3>", self.metaview)
         
         #inserting list boxes
         id = 1
@@ -111,16 +110,15 @@ class Listboxes():
             sel_values = self.values_listbox.get(self.values_listbox.curselection()[i])
             sel_idx.append(sel_values)
 
-            
-
-            
-  
         self.plot.createline(self.meta, self.canvas_data, self.idx, sel_idx, self.sel_colors)
+      
+      
         
     def metaview(self, event):
         '''
         
         '''
+        sel = self.values_listbox.curselection()
         m = Metabox(self.meta, self.idx)
         m.run()
         

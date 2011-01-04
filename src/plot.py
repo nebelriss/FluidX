@@ -16,6 +16,7 @@ class Plot(object):
         https://github.com/nebelriss/FluidX
     '''
     
+    
     def __init__(self, master, frame, sw, sh):
         '''
         Constructor for the plot area.
@@ -105,7 +106,7 @@ class Plot(object):
         
         # get the max value
         self.getMax(self.value_list)
-
+        
            
         # draw lines with the selected values
         # read every row of the value_list
@@ -150,6 +151,7 @@ class Plot(object):
                         else:
                             pass
                         
+                        print item[0]
                         # setting color for the line
                         color = colors[idx][int(item[0]) - 1]
                         
@@ -157,17 +159,18 @@ class Plot(object):
                         xPoint = (xValue * self.dist_x) + 70
                         yPoint = self.sh - ((yValue * self.dist_y) + 150)
                         
+                        tag = str(idx) + str(item[0])
+                        print tag
+                        
                         # drawing line
                         self.canvas.create_line(xZero, yZero, xPoint, yPoint, fill=color, width = 3, tag = "plot")
+
                         self.canvas.create_oval(xPoint - 4, yPoint - 4, xPoint + 4, yPoint + 4, fill = color, outline = color, tag = "plot")
                         
                         # setting x,y points as new zero points
                         xZero = xPoint
                         yZero = yPoint
-                    
-                    
-        
-
+                        
 
         
     def createlist(self, idx):
@@ -212,4 +215,5 @@ class Plot(object):
             
         self.dist_x = (self.sw - 400) / self.xMax
         self.dist_y = (self.sh - 500) / self.yMax       
-        self.createCoordSystem()     
+        self.createCoordSystem()
+        
