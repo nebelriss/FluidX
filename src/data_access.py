@@ -57,7 +57,7 @@ class Experiment:
         self.conn = sqlite3.connect(p)
         self.c = self.conn.cursor()
 
-        ##catch TODO (TODO Abfangen), When the table already exist in the file System (wenn die Tabelle bereits im Filesystem besteht)
+        ##TODO Abfangen, wenn die Tabelle bereits im Filesystem besteht
         
         self.c.execute("SELECT name FROM sqlite_master WHERE type='table'")
         tables = [n[0] for n in self.c.fetchall()]
@@ -69,7 +69,7 @@ class Experiment:
         if type(vn) != int:
             raise Exception("Input Error: Second parameter must be an integer")
 
-        # TODO: to document (dokumentieren)
+        # TODO: dokumentiere
         if 'values' not in tables and 'metadata' not in tables:
             self.create_experiment_table(p)
             sql = "CREATE TABLE 'metadata' (name TEXT UNIQUE, value TEXT)"

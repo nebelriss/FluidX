@@ -29,19 +29,19 @@ class Listboxes():
         # empty color list for the randomly chosen line colors
         self.sel_colors = color
         
-        # dict with colors for the lines
+        # dictionary with colors for the lines
         self.colors = {1: 'red', 2: 'blue', 3: 'yellow', 4: 'cyan', 5: 'moccasin', 6: 'black', 7: 'orange', 8: 'lightblue', 9: 'pink', 10: 'magenta', 11: 'green'}
         
         # space frame in the right panel
         spacer = Frame(self.right_frame, bg = "white", height = 5)
         spacer.pack(side = TOP, expand = NO, fill = BOTH)
         
-        # frame for the values you can chose
+        # frame for the values you can choose
         self.values_frame = Frame(self.right_frame)
         self.values_frame.pack(side =TOP, padx = 20, fill = BOTH, expand = NO, pady = 10)
         
         
-        # get meta information about motorname and the medium
+        # get meta information about motor name and the medium
         meta_tmp = self.meta[self.idx]
         self.canvas_data = self.values[self.idx]
         motor_meta = str(meta_tmp['exp_name'])
@@ -69,12 +69,12 @@ class Listboxes():
             color = self.colors[r]
             self.sel_colors[self.idx].append(color)
         
-        # create list box
+        # create listbox
         self.values_listbox = Listbox(self.values_frame, selectmode = MULTIPLE, height = self.values_height, exportselection=0)
         self.values_listbox.pack(side = TOP, fill = BOTH, expand = YES)
         self.values_listbox.bind("<<ListboxSelect>>", self.sel_values)
         
-        #inserting list boxes
+        #inserting listboxes
         id = 1
 
         for i in range(1,4):

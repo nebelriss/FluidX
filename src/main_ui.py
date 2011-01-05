@@ -28,7 +28,7 @@ class Main():
         
         '''
         # get the screen resolution
-        # to prevent from the bug with the fullscreen 
+        # to prevent from the bug with the full screen 
         #the resolution is set "-200" in the width and "150" in the height
         self.sw = root.winfo_screenwidth()
         self.sh = root.winfo_screenheight()
@@ -37,7 +37,7 @@ class Main():
         root.geometry("%dx%d+0+0" % (self.sw , self.sh))
         
         
-        # initialisations
+        # initializations
         self.databasename = StringVar()
         self.data = Data()
         self.idx = 0
@@ -47,7 +47,7 @@ class Main():
         # top_frame for the buttons
         # main_frame for the plot- and right frame
         # plot_frame for the plot area with canvas elements
-        # right_frame for the sidebar where you can chose the experiment which will be plotted
+        # right_frame for the sidebar where you can choose the experiment which will be plotted
         top_frame = Frame(root, height = 65)
         top_frame.pack(side = TOP, fill = BOTH, expand = NO)
                 
@@ -62,7 +62,7 @@ class Main():
 
 
         # there are four buttons in the top_frame:
-        # button_open is to open a file dialog and the user can chose a file
+        # button_open is to open a file dialog and the user can choose a file
         # button_import is to open the import dialog
         # button_table is to open a table with the values in table format, but its disabled at this time
         # button_exit closes all open and related windows of the program    

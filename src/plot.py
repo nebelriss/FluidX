@@ -22,7 +22,7 @@ class Plot(object):
         '''
         Constructor for the plot area.
         '''
-        # initalisation of 
+        # initialization of 
         self.sw = sw
         self.sh = sh
         self.frame = frame
@@ -77,13 +77,13 @@ class Plot(object):
         maximumy = ((self.yMax) + 1) / self.yInterval
         
         
-        # loop to write the numbers under the axisline and draw the seperationlines for the x-axis
+        # loop to write the numbers under the axis line and draw the separation lines for the x-axis
         for i in range(int(maximumx)):
             x = 70 + (i * self.dist_x * self.xInterval)
             self.canvas.create_line(x,self.sh-150,x,self.sh-155, width = 2)
             self.canvas.create_text(x,self.sh-140, text='%d'% (i * self.xInterval), anchor=N, tag = "text")   
         
-        # loop to write the numbers under the axisline and draw the seperationlines for the x-axis      
+        # loop to write the numbers under the axis line and draw the separation lines for the x-axis      
         for i in range (int(maximumy)):
             y = self.sh-150-(i * self.dist_y * self.yInterval) * self.win_osx_factor  
             self.canvas.create_line(70,y,75,y, width = 2)
@@ -122,7 +122,7 @@ class Plot(object):
         # draw lines with the selected values
         # read every row of the value_list
         for row in self.value_list:
-            # write row to a diffrent variable because I had to build a for loop like this (for row in row:)
+            # write row to a different variable because I had to build a for loop like this (for row in row:)
             values = row[1]
             
             # get the value with the index 2 in each row

@@ -67,7 +67,7 @@ class Import(object):
         csvLabel.config(font = myfont)
 
         
-        # Directory and emtpylabel for a space
+        # Directory and empty label for a space
         self.dirLabel = Label(self.frame, text = dir_txt)
         self.dirLabel.grid(row = 1, column = 0, padx = 5)
              
@@ -75,7 +75,7 @@ class Import(object):
         self.emptylabel.grid(row = 2, column = 0)
        
         
-        # Entry where the user can write the path inside or the chosen path will be displayes
+        # Entry where the user can write the path inside or the chosen path will be displayed
         # The default path is a linuxtype-path "~file.csv"
         self.entryPath = Entry(self.frame, width = 40, textvariable = self.filepath, bg = "grey")
         self.entryPath.insert(END, default_path)
@@ -153,7 +153,7 @@ class Import(object):
         sends information about file path, filename, and database name
         '''
 
-        # if the user has chosen newdatabase a dialog opens where he can define the path and his new filename
+        # if the user has chosen new database a dialog opens where he can define the path and his new filename
         # if not a dialog opens where the user can chose an existing .sqlite3 file
         if self.radio_db.get() == 0:
             self.sqlnewfilename()
