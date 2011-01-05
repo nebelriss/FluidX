@@ -21,7 +21,7 @@ class Metabox(threading.Thread):
         frame.pack(side = TOP, expand = YES, fill = BOTH)
         
         
-        # groupe members
+        # group members
         name = Label(frame, text = 'Gruppenmitglieder:')
         name.pack(side = TOP, anchor = W)
         name = Label(frame, text = meta[idx]['actor_name'] + "\n")

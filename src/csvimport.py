@@ -48,7 +48,7 @@ class Csvimport(object):
         dialect = csv.Sniffer().sniff(csvfile.read(1024))
         csvfile.seek(0)
 
-        # wirte the csv file into a list
+        # write the csv file into a list
         self.reader = csv.reader(csvfile, dialect)
    
    
@@ -64,7 +64,7 @@ class Csvimport(object):
         If self.value is "0" then a new database file will be created
         if its "1" the data will be written in an existing database.
         '''
-        #init of a empty dictionary for the meta datas
+        #init of a empty dictionary for the meta data's
         meta = {}
              
         

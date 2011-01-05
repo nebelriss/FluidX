@@ -1,7 +1,7 @@
 FluidX v0.2
 --------------------------------
 
-FluidX is a sapplication which is written to visolise fluidic datas.
+FluidX is a supplication which is written to visualize fluidic data's.
 
 --------------------------------
 
@@ -11,13 +11,13 @@ Windows:
 	1. Download the latest 2.x version for Windows (don't use the 3.x, it wont work) from
 	   http://www.python.org/download/
 	   
-	2. Extract the zip-file in a directory of your choise.
+	2. Extract the zip-file in a directory of your choice.
 	   You can use any application that handles zip files, if you need one get it at
 	   http://www.7-zip.org/
 	   	    
 	3. Open the extracted folder
 		
-	4. Doubleclick on the fluidx.py	
+	4. Double click on the fluidx.py	
 	
 	5. Import/open a sqlite3/csv file
 	
@@ -25,11 +25,11 @@ Linux/OSX:
 	1. To use this application you need python 2.x. With 3.x the application will not work.
 	   You can check your version by opening a console and typing "python --version"
 
-	2. Extract the zip-file in a directory of your choise.
+	2. Extract the zip-file in a directory of your choice.
 	   	    
 	3. Open the extracted folder
 		
-	4. Doubleclick on the fluidx.py	
+	4. Double click on the fluidx.py	
 	
 	5. Import/open a sqlite3/csv file
 
@@ -96,7 +96,7 @@ import_ui.py
 	creates the GUI for the importer dialog
 	
 listboxes.py
-	creates a listox with the different data you can select.
+	creates a listbox with the different data you can select.
 	
 main_ui.py
 	creates the main GUI for the application.
