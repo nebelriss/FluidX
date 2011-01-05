@@ -109,6 +109,7 @@ plot.py
 
 table.py
 	Opens a new windows with the selected values in table format.
+	
 --------------------------------
 
 written by:
@@ -116,7 +117,7 @@ written by:
 	- Sandra Lang
 	
 written for:
-	- Project of the FHNW
+	- following medical techical groups who are working in the fluidics area
 	
 adviser:
 	- Markus Degen
