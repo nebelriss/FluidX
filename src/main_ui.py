@@ -4,11 +4,10 @@
 
 from Tkinter import *
 from import_ui import *
-from data_access import *
 from plot import *
 from table import *
 from data import *
-from Listboxes import *
+from listboxes import *
 
 
 

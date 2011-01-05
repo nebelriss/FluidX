@@ -3,7 +3,6 @@
 
 from Tkinter import *
 from metabox import *
-import threading
 import random
 
 

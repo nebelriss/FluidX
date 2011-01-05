@@ -36,7 +36,7 @@ class Csvimport(object):
         
         
         
-    def cvsread(self):
+    def csvread(self):
         '''
         Opens the csv file with the given path and sniff the dialect 
         to convert it correctly and write it to the self.reader.

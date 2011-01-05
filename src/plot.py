@@ -162,16 +162,12 @@ class Plot(object):
                         else:
                             pass
                         
-                        print item[0]
                         # setting color for the line
                         color = colors[idx][int(item[0]) - 1]
                         
                         # calculating x,y points on the screen
                         xPoint = (xValue * self.dist_x) + 70
                         yPoint = self.sh - ((yValue * self.dist_y) + 150) * self.win_osx_factor
-                        
-                        tag = str(idx) + str(item[0])
-                        print tag
                         
                         # drawing line
                         self.canvas.create_line(xZero, yZero, xPoint, yPoint, fill=color, width = 3, tag = "plot")
@@ -211,19 +207,20 @@ class Plot(object):
             values = row[1]
             for row in values:
                 endValue = row
-                for row in endValue:                                                  
+                for row in endValue: 
+                    
+                    # check for max value in the x-axis                                                 
                     for i in range(1,3):
-        
-                        # check for max value
                         if self.xMax < row[i]:
                             self.xMax = row[i]
-
+                    
+                    # check for max value in the y-axis
                     for i in range(6,7):
                         if self.yMax < row[i]:
                             self.yMax = row[i]
 
 
-            
+        # calculating the distance between     
         self.dist_x = (self.sw - 400) / self.xMax
         self.dist_y = (self.sh - 500) / self.yMax       
         self.createCoordSystem()

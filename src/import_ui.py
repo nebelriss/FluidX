@@ -6,7 +6,7 @@ from tkFont import *
 from tkFileDialog import *
 from csvimport import *
 from tkMessageBox import *
-from data import *
+
 
 
 
@@ -96,7 +96,7 @@ class Import(object):
         self.buttonBrowse = Button(self.frame, text = browse_txt, command = self.csvopenfilename)
         self.buttonBrowse.grid(row = 1, column = 2, sticky = W, padx = 5)
         
-        self.buttonOK = Button(self.frame, text = ok_txt, width = 5, command = self.cvstosql)
+        self.buttonOK = Button(self.frame, text = ok_txt, width = 5, command = self.csvtosql)
         self.buttonOK.grid(row = 6, column = 2, sticky = (S, E), padx = 5, pady = 5)
                 
         self.buttonCancel = Button(self.frame, text = cancel_txt, command = self.child.destroy)
@@ -148,7 +148,7 @@ class Import(object):
         
         
         
-    def cvstosql(self):
+    def csvtosql(self):
         '''
         sends information about file path, filename, and database name
         '''
@@ -175,7 +175,7 @@ class Import(object):
             
             # sending string values to write in sqlite3 file
             check = Csvimport(filepath, databasename)
-            check.cvsread()
+            check.csvread()
             ok = check.tosql()
             
             
