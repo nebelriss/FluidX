@@ -44,6 +44,7 @@ class Listboxes():
         # get meta information about motor name and the medium
         meta_tmp = self.meta[self.idx]
         self.canvas_data = self.values[self.idx]
+        print meta_tmp
         motor_meta = str(meta_tmp['exp_name'])
         media_meta = str(meta_tmp['additional_info'])
         self.i += 1
