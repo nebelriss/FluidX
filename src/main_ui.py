@@ -109,6 +109,7 @@ class Main():
         
         # creates a listbox with the meta and values
         Listboxes(self.right_frame, meta, values, self.idx, self.plot, self.color)
+        
         #setting the counter for the listindex +1
         self.idx += 1
 
@@ -120,7 +121,6 @@ class Main():
         '''
         
         self.importer = Import(root)
-        self.savedata(self.importer)
       
         
 

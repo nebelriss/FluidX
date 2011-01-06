@@ -170,11 +170,11 @@ class Import(object):
             
             #  converting values to string
             filepath = self.filepath.get()
-            databasename = self.databasename.get()
+            self.databasename = self.databasename.get()
             value = self.radio_db.get()
             
             # sending string values to write in sqlite3 file
-            check = Csvimport(filepath, databasename)
+            check = Csvimport(filepath, self.databasename)
             check.csvread()
             ok = check.tosql()
             
@@ -182,8 +182,8 @@ class Import(object):
 
         #if the Csv import return True it means, that the import of the csv file to the sql was successful
         if ok == True:
-            return databasename
-            self.child.destroy()
+            self.child.destroy()   
+
         #if the import was interrupt, an error message will be showed
         else:
             showwarning("Import Error", "Import the Database\n wasn't successful!")
