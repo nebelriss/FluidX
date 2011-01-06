@@ -47,7 +47,7 @@ class Import(object):
         dir_txt = "Folder: "
         default_path = "~file.csv"
         newdb_txt = "Create new Database"
-        exdb_txt = "Create new Database"
+        exdb_txt = "Existing Database"
         browse_txt = "Browse"
         ok_txt = "OK"
         cancel_txt  = "Cancel"
