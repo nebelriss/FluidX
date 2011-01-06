@@ -74,6 +74,7 @@ class Listboxes():
         self.values_listbox = Listbox(self.values_frame, selectmode = MULTIPLE, height = self.values_height, exportselection=0)
         self.values_listbox.pack(side = TOP, fill = BOTH, expand = YES)
         self.values_listbox.bind("<<ListboxSelect>>", self.sel_values)
+        self.values_listbox.bind("<Button-3>", self.metaview)
         
         #inserting listboxes
         id = 1
