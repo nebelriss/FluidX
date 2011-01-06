@@ -38,25 +38,24 @@ class MessureTable(Frame):#table frame
                 i = i + 1
     
     
-class index:
-    def __init__(self):        
-        if __name__ == '__main__': #command for name column
-            tk = Tk()
-            #name table1 + name column
-            mlb1 = Label(tk, text='Messreihenauswahl').pack()#name table
-            mlb1 = MessureTable(tk, (('Pumpennummer',10), ('GruppenID',10), ('Gruppenname',10), ('Medium',10)))
-            mlb1.pack(fill=BOTH,side=TOP)
-            #insert data1
-            for i in range(5):
-                mlb1.insert(END,('Pumpennummer %d'%i, 'GruppenID %d'%i, 'Gruppenname %d'%i, 'Medium %d'%i))            
-            for i in range (1):
+       
+if __name__ == '__main__': #command for name column
+    tk = Tk()
+    #name table1 + name column
+    mlb1 = Label(tk, text='Messreihenauswahl').pack()#name table
+    mlb1 = MessureTable(tk, (('Pumpennummer',10), ('GruppenID',10), ('Gruppenname',10), ('Medium',10)))
+    mlb1.pack(fill=BOTH,side=TOP)
+    #insert data1
+    for i in range(5):
+        mlb1.insert(END,('Pumpennummer %d'%i, 'GruppenID %d'%i, 'Gruppenname %d'%i, 'Medium %d'%i))            
+    for i in range (1):
 
-                #name table2 + name column   
-                mlb2 = Label(tk, text='Messwerte').pack()
-                mlb2 = MessureTable(tk, (('ID', 10), ('Date',10), ('Gegendruck [kPa]',10), ('Temperatur[C]',10), ('Frequenz[Hz]',10), ('0,5mL',5), ('1mL',5), ('1,5mL',5), ('2mL',5), ('2,5mL',5), ('Fluss[ml/min]',10), ('Strom',10), ('Spannung',10), ('Leistungsaufnahme[mW]',10)))
-                mlb2.pack(expand=YES,fill=BOTH,side=BOTTOM)
-                #insert data2
-                for i in range (100):
-                    mlb2.insert(END,('ID %d'%i, 'Date %d'%i, 'Gegendruck %d'%i, 'Temperatur %d'%i, 'Frequenz %d'%i, '0,5mL %d'%i, '1mL %d'%i, '1,5mL %d'%i, '2mL %d'%i, '2,5mL %d'%i, 'Fluss %d'%i, 'Strom %d'%i, 'Spannung %d'%i, 'Leistungsaufnahme %d'%i))   
-            tk.mainloop()
+        #name table2 + name column   
+        mlb2 = Label(tk, text='Messwerte').pack()
+        mlb2 = MessureTable(tk, (('ID', 10), ('Date',10), ('Gegendruck [kPa]',10), ('Temperatur[C]',10), ('Frequenz[Hz]',10), ('0,5mL',5), ('1mL',5), ('1,5mL',5), ('2mL',5), ('2,5mL',5), ('Fluss[ml/min]',10), ('Strom',10), ('Spannung',10), ('Leistungsaufnahme[mW]',10)))
+        mlb2.pack(expand=YES,fill=BOTH,side=BOTTOM)
+        #insert data2
+        for i in range (100):
+            mlb2.insert(END,('ID %d'%i, 'Date %d'%i, 'Gegendruck %d'%i, 'Temperatur %d'%i, 'Frequenz %d'%i, '0,5mL %d'%i, '1mL %d'%i, '1,5mL %d'%i, '2mL %d'%i, '2,5mL %d'%i, 'Fluss %d'%i, 'Strom %d'%i, 'Spannung %d'%i, 'Leistungsaufnahme %d'%i))   
+tk.mainloop()
                 
