@@ -5,7 +5,7 @@
 from Tkinter import *
 from import_ui import *
 from plot import *
-from table import *
+#from table import *
 from data import *
 from listboxes import *
 
