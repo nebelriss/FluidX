@@ -5,6 +5,14 @@ FluidX is a supplication which is written to visualize fluidic data's.
 
 --------------------------------
 
+Requirements:
+
+Python: 2.x 
+OS: Windows, OSX, Linux
+min. screenresolution: 1024x786
+
+--------------------------------
+
 Starting the application:
 
 Windows:
