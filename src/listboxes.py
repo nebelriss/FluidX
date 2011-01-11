@@ -44,7 +44,6 @@ class Listboxes():
         # get meta information about motor name and the medium
         meta_tmp = self.meta[self.idx]
         self.canvas_data = self.values[self.idx]
-        print meta_tmp
         motor_meta = str(meta_tmp['exp_name'])
         media_meta = str(meta_tmp['additional_info'])
         self.i += 1
@@ -78,7 +77,6 @@ class Listboxes():
         
         #inserting listboxes
         id = 1
-
         for i in range(1,4):
             desc = 'v' + str(i) + '_desc'
             box_desc = meta_tmp[desc]
@@ -117,7 +115,7 @@ class Listboxes():
         
     def metaview(self, event):
         '''
-        
+        opens a window with meta data
         '''
         sel = self.values_listbox.curselection()
         m = Metabox(self.meta, self.idx)

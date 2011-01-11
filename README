@@ -26,7 +26,7 @@ Windows:
 	   	    
 	3. Open the extracted folder
 		
-	4. Double click on the fluidx.py	
+	4. Double click on the fluidx.py in the src folder	
 	
 	5. Import/open a sqlite3/csv file
 	
@@ -38,7 +38,7 @@ Linux/OSX:
 	   	    
 	3. Open the extracted folder
 		
-	4. Double click on the fluidx.py	
+	4. Double click on the fluidx.py in the src folder	
 	
 	5. Import/open a sqlite3/csv file
 
@@ -53,6 +53,7 @@ Files included:
 |   `-- real_6.csv
 |-- db_example
 |   `-- real_6.tes
+|-- epydoc
 `-- src
 |   |-- csvimport.py
 |   |-- data_access.py
@@ -73,8 +74,8 @@ Folder description:
 .git:
 	local git with two branches
 	
-.settings:
-	???
+epydoc:
+	class documentation
 	
 db_example:
 	example db-files for testing

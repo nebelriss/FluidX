@@ -10,7 +10,7 @@ class Metabox(threading.Thread):
     '''
 
 
-    def __init__(self, meta, idx, color):
+    def __init__(self, meta, idx):
         '''
         Constructor
         '''
